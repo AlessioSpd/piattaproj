@@ -1,0 +1,197 @@
+@import "../../../assets/styles/const-style.scss";
+
+.topBar {
+    width: 100%;
+    background-color: $background-panel-color;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+        height: 100%;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__title {
+        padding-left: 20px;
+        gap: 20px;
+
+        &--icon {
+            width: 25px;
+            height: 25px;
+            @include image_background('../../../assets/icons/penis.png', contain);
+        }
+
+        &--label {
+            font-size: 16px;
+        }
+    }
+
+    &__options {
+        gap: 20px;
+        padding-right: 20px;
+
+        &__phone {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            gap: 10px;
+
+            &--icon {
+                width: 20px;
+                height: 20px;
+                @include image_background('../../../assets/icons/phone.png', contain);
+            }
+        }
+
+        &__separator {
+            border-right: solid 1px black;
+            width: 10px;
+            height: 50%;
+            margin-right: 10px;
+        }
+
+        &__customerCare {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            &--icon {
+                width: 20px;
+                height: 20px;
+                @include image_background('../../../assets/icons/customer-service.png', contain);
+            }
+        }
+    }
+}
+
+.navBar {
+    margin-top: 4px;
+    width: 100%;
+    height: 70px;
+    background-color: $background-panel-color;
+    display: flex;
+    align-items: center;
+
+    & > * {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__filterMenuContainer {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__buttonIcon {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            @include image_background('../../../assets/icons/menus.png', 32px 32px);
+        }
+    }
+
+    &__searchBarContainer {
+        flex: 5;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__searchBar {
+            width: 90%;
+            height: 60%;
+            background-color: $background-color;
+            border-radius: 15px;
+            display: flex;
+
+            &__inputContainer {
+                flex: 10;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                & > input {
+                    margin-left: 30px;
+                    width: 100%;
+                    height: 80%;
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
+                    font-family: Spartan;
+                    font-size: 15px;
+
+                    &::placeholder {
+                        color: #b9b9b9;
+                    }
+                }
+            }
+
+            &__searchIcon {
+                flex: 1;
+                cursor: pointer;
+                @include image_background('../../../assets/icons/search.png', 22px 22px);
+            }
+        }
+    }
+
+    &__loginSectionContainer {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+
+        & > * {
+            cursor: pointer;
+        }
+
+        &--icon {
+            min-width: 30px;
+            height: 30px;
+            @include image_background('../../../assets/icons/user.png', contain);
+        }
+    }
+
+    &__cartButtonContainer {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--icon {
+            width: 30px;
+            height: 30px;
+            @include image_background('../../../assets/icons/cart.png', 30px 30px);
+
+            position: relative;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+
+            &--badge {
+                width: 20px;
+                height: 18px;
+                position: absolute;
+                top: -7px;
+                right: -7px;
+                background-color: black;
+                color: white;
+                border-radius: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 12px;
+                padding-top: 2px;
+            }
+        }
+    }
+}

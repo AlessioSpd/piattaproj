@@ -1,0 +1,41 @@
+<div class="mainContainer">
+    <app-page-header></app-page-header>
+    <div class="mainContainer__searchResultContainer">
+        <div class="mainContainer__searchResultContainer__filterPanel">
+            <div class="mainContainer__searchResultContainer__filterPanel__filterMenu" *ngFor="let menu of filterMenuList; index as i">
+                <div class="mainContainer__searchResultContainer__filterPanel__filterMenu__toggleButton" (click)="toggleMenu(i)">
+                    <div class="mainContainer__searchResultContainer__filterPanel__filterMenu__toggleButton--title">{{menu.nome}}</div>
+                    <div class="mainContainer__searchResultContainer__filterPanel__filterMenu__toggleButton--icon" [ngStyle]="{'transform': menu.opened ? 'scaleY(-1)' : 'scaleY(1)'}"></div>
+                </div>
+                <div class="mainContainer__searchResultContainer__filterPanel__filterMenu__filterContainer" [ngStyle]="{'display': !menu.opened ? 'none' : 'inline'}">
+                    <div class="mainContainer__searchResultContainer__filterPanel__filterMenu__filterContainer--item" *ngFor="let item of menu.itemMenu; index as i">{{item.checked}} - {{item.nome}} - {{item.quantita}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="mainContainer__searchResultContainer__resultPanel">
+            <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel"> qui ce vanno e cose pe ordina a lista</div>
+            <div class="mainContainer__searchResultContainer__resultPanel__productsContainer">
+                <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard"
+                    *ngFor="let item of productList; index as i"
+                >
+                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--brandName">{{item.marca}}</div>
+                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--productName">{{item.nome}}</div>
+                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--productImage"
+                        [ngStyle]="{'background-image': 'url('+item.img+')'}"></div>
+                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo">
+                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo__availability"
+                            [ngStyle]="{'color': item.disponibile ? 'rgb(36, 204, 36)' : 'grey'}"
+                        >
+                            {{item.disponibile ? "Available" : "Not Available"}}
+                        </div>
+                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo__priceAndRank">
+                            <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo__priceAndRank--price">€{{item.costo}}</div>
+                            <!-- <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo__priceAndRank--rank">{{item.rank}}</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

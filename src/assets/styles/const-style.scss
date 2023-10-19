@@ -1,0 +1,12 @@
+$background-color: #F5F5F5;
+$background-panel-color: white;
+$available_green:rgb(36, 204, 36);
+
+@mixin image_background($url:'', $size: 16px 16px, $repeat: no-repeat, $position: center) {
+    @if $url != ''{
+        background-image: url($url);
+    }
+    background-size: $size;
+    background-repeat: $repeat;
+    background-position: $position;
+}
