@@ -2,6 +2,7 @@
     <app-page-header></app-page-header>
     
     <div class="mainContainer__searchResultContainer">
+
         <div class="mainContainer__searchResultContainer__filterPanelContainer">
             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel">
                 <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu" *ngFor="let menu of filterMenuList; index as i">
@@ -24,6 +25,7 @@
                 </div>
             </div>
         </div>
+
         <div class="mainContainer__searchResultContainer__resultPanel">
             <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel"> qui ce vanno e cose pe ordina a lista</div>
             <div class="mainContainer__searchResultContainer__resultPanel__productsContainer">
@@ -31,7 +33,13 @@
                     *ngFor="let item of productList; index as i"
                 >
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--brandName">{{item.marca}}</div>
-                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--productName">{{item.nome}}</div>
+                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank">
+                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank--name">{{item.nome}}</div>
+                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank--rank">
+                            {{item.rank}}
+                            <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank--rank--icon"></div>
+                        </div>
+                    </div>
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--productImage"
                         [ngStyle]="{'background-image': 'url('+item.img+')'}"></div>
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo">
@@ -40,10 +48,7 @@
                         >
                             {{item.disponibile ? "Available" : "Not Available"}}
                         </div>
-                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo__priceAndRank">
-                            <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo__priceAndRank--price">€{{item.costo}}</div>
-                            <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo__priceAndRank--rank">{{item.rank}}</div>
-                        </div>
+                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo--price">€{{item.costo}}</div>
                     </div>
                 </div>
             </div>
