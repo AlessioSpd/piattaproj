@@ -21,19 +21,24 @@ export class SearchPageComponent {
       opened: false,
       itemMenu: [
         {checked: false, nome: "Apple", quantita: 123},
-        {checked: false, nome: "Samsung", quantita: 45}
+        {checked: false, nome: "Samsung", quantita: 45},
+        {checked: false, nome: "Huawei", quantita: 1}
       ]
     },
     {
       nome:"Tipo",
       opened: false,
+      itemMenu: [
+        {checked: false, nome: "Meccaniche", quantita: 123},
+        {checked: false, nome: "Wireless", quantita: 45}
+      ]
     },
   ];
 
   productList = [
-    {marca:"Apple", nome:"Apple dildo tech v1", rank: 5, disponibile: true, costo: '30.00', img:'../../../assets/imgs/1.png'},
-    {marca:"Samsung", nome:"Samsung dildo tech v2", rank: 2, disponibile: false, costo: '20.00', img:"../../../assets/imgs/2.png"},
-    {marca:"huauei", nome:"asdfsadfsd", rank: 1, disponibile: true, costo: '0.01', img:"../../../assets/imgs/1.png"},
+    {marca:"Apple", nome:"Apple dildo tech v1", rank: 5, disponibile: true, costo: '30.00', img:'../../../assets/imgs/11.png'},
+    {marca:"Samsung", nome:"Samsung dildo tech v2", rank: 2, disponibile: false, costo: '20.00', img:"../../../assets/imgs/22.png"},
+    {marca:"huauei", nome:"asdfsadfsd", rank: 1, disponibile: true, costo: '0.01', img:"../../../assets/imgs/11.png"},
   ]
 
   flagTest = false;

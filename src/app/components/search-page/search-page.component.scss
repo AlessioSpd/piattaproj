@@ -3,61 +3,90 @@
 .mainContainer {
     position: absolute;
     width: 100%;
-    height: auto;
+    height: 100%;
     background-color: $background-color;
     font-family: Spartan;
 
     &__searchResultContainer {
         margin-top: 15px;
         width: 100%;
-        height: 100vh;
-        // height: auto;
+        height: auto;
         display: flex;
+        // background-color: red;
 
-        &__filterPanel {
-            background-color: $background-panel-color;
-            width: 30%;
+        &__filterPanelContainer {
             max-width: 330px;
             min-width: 250px;
-            height: auto; //va in auto dopo ricordatelo
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            gap: 10px;
 
-            &__filterMenu {
-                // background-color: red;
-                width: 80%;
+            &__filterPanel {
+                border-radius: 5px;
+                background-color: $background-panel-color;
+                width: 100%;
                 height: auto;
                 display: flex;
+                align-items: center;
                 flex-direction: column;
-                transition: all 1s ease;
+                gap: 10px;
 
-                &:nth-child(1) {
-                    margin-top: 30px;
-                }
-
-                &__toggleButton {
+                &__filterMenu {
+                    width: 80%;
+                    height: auto;
                     display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    width: 100%;
-                    height: 30px;
-                    // background-color: aqua;
-
-                    &--icon {
-                        width: 15px;
-                        height: 15px;
-                        @include image_background('../../../assets/icons/arrow.png', contain);
-                        transition: all .5s;
+                    flex-direction: column;
+                    transition: all 1s ease;
+    
+                    &:nth-child(1) {
+                        margin-top: 30px;
                     }
-                }
 
-                &__filterContainer {
-                    width: 100%;
-                    height: 150px;
-                    background-color: pink;
+                    &:nth-last-child(1) {
+                        margin-bottom: 30px;
+                    }
+    
+                    &__toggleButton {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        height: 30px;
+    
+                        &--icon {
+                            width: 15px;
+                            height: 15px;
+                            @include image_background('../../../assets/icons/arrow.png', contain);
+                            transition: all .5s;
+                        }
+                    }
+    
+                    &__filterContainer {
+                        width: 100%;
+                        height: auto;
+    
+                        &__item {
+                            display: flex;
+                            margin-bottom: 5px;
+    
+                            & > * {
+                                display: flex;
+                                align-items: center;
+                            }
+                            
+                            &--checkbox {
+                                flex: 1;
+                                justify-content: center;
+                            }
+    
+                            &--nameLabel {
+                                flex: 3;
+                                justify-content: flex-start;
+                            }
+    
+                            &--quantityLabel {
+                                flex: 1;
+                                justify-content: center;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -77,7 +106,7 @@
             &__productsContainer {
                 margin-top: 15px;
                 width: 100%;
-                height: 100vh;
+                height: auto;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: flex-start;
