@@ -27,11 +27,12 @@
         </div>
 
         <div class="mainContainer__searchResultContainer__resultPanel">
-            <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel"> qui ce vanno e cose pe ordina a lista</div>
+            <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel">
+
+            </div>
             <div class="mainContainer__searchResultContainer__resultPanel__productsContainer">
-                <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard"
-                    *ngFor="let item of productList; index as i"
-                >
+                <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard" *ngFor="let item of productList; index as i">
+                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--badge" *ngIf="item.new">NIU</div>
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--brandName">{{item.marca}}</div>
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank">
                         <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank--name">{{item.nome}}</div>

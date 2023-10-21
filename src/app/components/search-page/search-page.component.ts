@@ -36,9 +36,9 @@ export class SearchPageComponent {
   ];
 
   productList = [
-    {marca:"Apple", nome:"Apple dildo tech v1", rank: 5, disponibile: true, costo: '30.00', img:'../../../assets/imgs/11.png'},
-    {marca:"Samsung", nome:"Samsung dildo tech v2", rank: 2.5, disponibile: false, costo: '20.00', img:"../../../assets/imgs/22.png"},
-    {marca:"huauei", nome:"asdfsadfsd", rank: 1, disponibile: true, costo: '0.01', img:"../../../assets/imgs/11.png"},
+    {marca:"Apple", nome:"Apple dildo tech v1", rank: 5, disponibile: true, costo: '30.00', img:'../../../assets/imgs/11.png', new: false},
+    {marca:"Samsung", nome:"Samsung dildo tech v2", rank: 2.5, disponibile: false, costo: '20.00', img:"../../../assets/imgs/22.png", new: true},
+    {marca:"Huauei", nome:"asdfsadfsd", rank: 1, disponibile: true, costo: '0.01', img:"../../../assets/imgs/11.png", new: false},
   ]
 
   flagTest = false;

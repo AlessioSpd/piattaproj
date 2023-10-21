@@ -117,6 +117,22 @@
                     height: 500px;
                     border-radius: 5px;
                     background-color: $background-panel-color;
+                    position: relative;
+
+                    &--badge {
+                        width: 45px;
+                        height: 18px;
+                        position: absolute;
+                        top: -7px;
+                        right: -7px;
+                        background-color: rgb(197, 0, 0);
+                        color: white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 15px;
+                        padding-top: 2px;
+                    }
 
                     &--brandName {
                         width: auto;
