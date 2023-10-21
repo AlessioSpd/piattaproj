@@ -1,0 +1,11 @@
+<div class="customSelect" (click)="openDropMenu()">
+    <div class="customSelect--label">{{dropMenu.placeHolder}}</div>
+    <div class="customSelect--icon"></div>
+    <div class="customSelect__optionsContainer" [ngStyle]="{'display': openDropMenuFlag ? 'block' : 'none'}">
+        <div
+            class="customSelect__optionsContainer--option"
+            *ngFor="let option of dropMenu.options; index as i"
+            (click)="selectItem(i)"
+        >{{option}}</div>
+    </div>
+</div>

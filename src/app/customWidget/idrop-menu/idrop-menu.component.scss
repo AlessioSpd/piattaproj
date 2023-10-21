@@ -1,0 +1,58 @@
+@import "../../../assets/styles/const-style.scss";
+
+.customSelect {
+    min-width: 130px;
+    width: auto;
+    height: 30px;
+    background-color: $background-color;
+    border-radius: 5px;
+    font-size: 15px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--label {
+        color: grey;
+        padding-left: 10px;
+    }
+
+    &--icon {
+        padding-left: 20px;
+        width: 8px;
+        height: 8px;
+        @include image_background('../../../assets/icons/arrow.png', contain);
+    }
+
+    &__optionsContainer {
+        position: absolute;
+        border-radius: 5px;
+        width: 120px;
+        height: auto;
+        top: 35px;
+        background-color: $background-color;
+        
+        &--option {
+            margin-top: 5px;
+            width: auto;
+            height: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            display: flex;
+            align-items: center;
+            user-select: none;
+
+            &:nth-child(1) {
+                margin-top: 10px;
+            }
+
+            &:nth-last-child(1){
+                margin-bottom: 10px;
+            }
+
+            &:hover {
+                background-color: rgb(223, 223, 223);
+            }
+        }
+    }
+}

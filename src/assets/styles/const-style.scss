@@ -10,3 +10,35 @@ $available_green:rgb(36, 204, 36);
     background-repeat: $repeat;
     background-position: $position;
 }
+
+// assicurati che il parent sia positio: relative
+.newsBadge {
+    width: 45px;
+    height: 18px;
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background-color: rgb(197, 0, 0);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    padding-top: 2px;
+}
+
+.numberBadge {
+    width: 20px;
+    height: 18px;
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    background-color: black;
+    color: white;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding-top: 2px;
+}

@@ -178,19 +178,7 @@
             cursor: pointer;
 
             &--badge {
-                width: 20px;
-                height: 18px;
-                position: absolute;
-                top: -7px;
-                right: -7px;
-                background-color: black;
-                color: white;
-                border-radius: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 12px;
-                padding-top: 2px;
+                @extend .numberBadge;
             }
         }
     }

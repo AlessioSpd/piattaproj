@@ -41,8 +41,10 @@ export class SearchPageComponent {
     {marca:"Huauei", nome:"asdfsadfsd", rank: 1, disponibile: true, costo: '0.01', img:"../../../assets/imgs/11.png", new: false},
   ]
 
-  flagTest = false;
-  
+  prova = {
+    placeHolder: "Stock status...",
+    options: ['All','In stock','Out of stock']
+  }
   constructor(){}
 
   toggleMenu(x: number){

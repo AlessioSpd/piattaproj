@@ -28,7 +28,11 @@
 
         <div class="mainContainer__searchResultContainer__resultPanel">
             <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel">
-
+                <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel__row">
+                    <!-- poi diventa un componente a cui passi un oggetto IDropMenu dove ci saranno tutte le info -->
+                    <app-idrop-menu [dropMenu]="prova"></app-idrop-menu>
+                </div>
+                <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel__row"></div>
             </div>
             <div class="mainContainer__searchResultContainer__resultPanel__productsContainer">
                 <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard" *ngFor="let item of productList; index as i">
