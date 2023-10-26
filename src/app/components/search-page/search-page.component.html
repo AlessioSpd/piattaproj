@@ -5,7 +5,7 @@
 
         <div class="mainContainer__searchResultContainer__filterPanelContainer">
             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel">
-                <button (click)="prendiDati()">premimi</button>
+                <!-- <button (click)="prendiDati()">premimi</button> -->
                 <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu" *ngFor="let menu of filterMenuList; index as i">
                     <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__toggleButton" (click)="toggleMenu(i)">
                         <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__toggleButton--title">{{menu.nome}}</div>

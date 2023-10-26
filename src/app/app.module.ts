@@ -7,6 +7,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { IDropMenuComponent } from './customWidget/idrop-menu/idrop-menu.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { IDropMenuComponent } from './customWidget/idrop-menu/idrop-menu.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

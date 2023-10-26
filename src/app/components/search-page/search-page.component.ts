@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchPageService } from 'src/app/services/search-page-service.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { SearchPageService } from 'src/app/services/search-page-service.service'
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss']
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements OnInit{
 
   filterMenuList=[
     {
@@ -46,7 +46,12 @@ export class SearchPageComponent {
     placeHolder: "Stock status...",
     options: ['All','In stock','Out of stock']
   }
-  constructor(private myServ: SearchPageService){}
+
+  constructor(private myServ: SearchPageService) {}
+  
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   prendiDati() {
     this.myServ.getListaProdotti().subscribe((res) => {
