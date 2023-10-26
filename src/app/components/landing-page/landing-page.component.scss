@@ -1,16 +1,78 @@
+@import "../../../assets/styles/const-style.scss";
+
+
 .pageContainer {
     position: absolute;
     width: 100%;
     height: auto;
     overflow-y: hidden;
+    font-family: Spartan;
 
     &__carouselContainer {
         width: 100%;
         height: 700px;
-        background-color: red;
+        display: flex;
+        background: linear-gradient(45deg, rgb(150, 255, 255), rgb(5, 176, 255));
+        
+        &__infoContainer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            &__smallHeaderContainer {
+                width: auto;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+            }
+
+            &__bigHeaderContainer {
+                max-width: 390px;
+                max-height: 40px;
+                width: auto;
+                height: auto;
+                font-size: 38px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &__descriptionContainer {
+                max-width: 500px;
+                max-height: 150px;
+                width: auto;
+                height: auto;
+                word-wrap: break-word;
+            }
+
+            &__buttonContainer {
+                margin-top: 30px;
+                width: 150px;
+                height: 40px;
+                border-radius: 5px;
+                background-color: coral;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+            }
+        }
+
+        &__fotoContainer {
+            flex: 1;
+            background-image: url('../../../assets/imgs/veramente_glande.png');
+            background-size: 460px auto;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
     }
 
-    &__infoContainer {
+    &__helpInfoContainer {
         width: 100%;
         height: 300px;
         background-color: purple;
