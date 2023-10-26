@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SearchPageService } from 'src/app/services/search-page-service.service';
 
 @Component({
   selector: 'app-search-page',
@@ -45,7 +46,13 @@ export class SearchPageComponent {
     placeHolder: "Stock status...",
     options: ['All','In stock','Out of stock']
   }
-  constructor(){}
+  constructor(private myServ: SearchPageService){}
+
+  prendiDati() {
+    this.myServ.getListaProdotti().subscribe((res) => {
+      console.log(res);
+    })
+  }
 
   toggleMenu(x: number){
     console.log('sono il menu ' + x)
