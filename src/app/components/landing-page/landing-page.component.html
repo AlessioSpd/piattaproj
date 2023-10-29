@@ -1,6 +1,5 @@
 <div class="pageContainer">
     <app-page-header></app-page-header>
-    <button type="button" (click)="changePage()">Vai alla search Page</button>
     <div class="pageContainer__carouselContainer">
         <div class="pageContainer__carouselContainer__infoContainer">
             <div class="pageContainer__carouselContainer__infoContainer__smallHeaderContainer">New extra size 3.5M</div>
@@ -11,5 +10,12 @@
         </div>
         <div class="pageContainer__carouselContainer__fotoContainer"></div>
     </div>
-    <div class="pageContainer__helpInfoContainer"></div>
+    <div class="pageContainer__helpInfoContainer">
+        <div class="pageContainer__helpInfoContainer__helpItemContainer" *ngFor="let item of helpItem; index as i">
+            <div class="pageContainer__helpInfoContainer__helpItemContainer--icon" [ngStyle]="{'background-image' : 'url(' + item.path + ')'}"></div>
+            <div class="pageContainer__helpInfoContainer__helpItemContainer__textContainer">
+                <div class="pageContainer__helpInfoContainer__helpItemContainer__textContainer--label">{{item.text}}</div>
+            </div>
+        </div>
+    </div>
 </div>
