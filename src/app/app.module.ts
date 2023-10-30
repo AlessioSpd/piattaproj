@@ -8,6 +8,7 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { IDropMenuComponent } from './customWidget/idrop-menu/idrop-menu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductModalComponent } from './components/product-modal/product-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     LandingPageComponent,
     SearchPageComponent,
     PageHeaderComponent,
-    IDropMenuComponent
+    IDropMenuComponent,
+    ProductModalComponent,
   ],
   imports: [
     BrowserModule,

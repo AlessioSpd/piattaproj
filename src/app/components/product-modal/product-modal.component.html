@@ -1,0 +1,28 @@
+
+<div class="modalContainer" [ngStyle]="{'display': openBoolean ? 'flex' : 'none'}">
+    <div class="modalContainer__modalPanel">
+        <div class="modalContainer__modalPanel__itemPhotosContainer">
+            <div class="modalContainer__modalPanel__itemPhotosContainer__changePhotoContainer">
+                <div class="modalContainer__modalPanel__itemPhotosContainer__changePhotoContainer--frame"></div>
+                <div class="modalContainer__modalPanel__itemPhotosContainer__changePhotoContainer--frame"></div>
+                <div class="modalContainer__modalPanel__itemPhotosContainer__changePhotoContainer--frame"></div>
+            </div>
+        </div>
+        <div class="modalContainer__modalPanel__itemDescriptionContainer">
+            <div class="modalContainer__modalPanel__itemDescriptionContainer__closeButton" (click)="closeModal()"></div>
+            <div class="modalContainer__modalPanel__itemDescriptionContainer__titleContainer">Dildo mega figo</div>
+            <div class="modalContainer__modalPanel__itemDescriptionContainer__brandLabel">Apple</div>
+            <div class="modalContainer__modalPanel__itemDescriptionContainer__descriptionArea">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at elit tristique purus fringilla malesuada sollicitudin a ligula. Nullam lacinia ante nec aliquam bibendum. Donec quis lorem nulla. Sed nisi mauris, luctus non nibh et, sollicitudin posuere tortor. Nam tempor at lacus id tempor. Integer quis ex nec orci dictum.</div>
+            <div class="modalContainer__modalPanel__itemDescriptionContainer__itemPrice">$500.00</div>
+            <div class="modalContainer__modalPanel__itemDescriptionContainer__chooseContainer">
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__chooseContainer__choose">XXL</div>
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__chooseContainer__choose">XL</div>
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__chooseContainer__choose">XS</div>
+            </div>
+            <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer">
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer--button">Add to Cart</div>
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer--button">Add to Wishlist</div>
+            </div>
+        </div>
+    </div>
+</div>

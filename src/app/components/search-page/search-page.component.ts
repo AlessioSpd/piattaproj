@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchPageService } from 'src/app/services/search-page-service.service';
+import { ProductModalComponent } from '../product-modal/product-modal.component';
 
 @Component({
   selector: 'app-search-page',
@@ -7,6 +8,8 @@ import { SearchPageService } from 'src/app/services/search-page-service.service'
   styleUrls: ['./search-page.component.scss']
 })
 export class SearchPageComponent implements OnInit{
+
+  @ViewChild(ProductModalComponent) childComponent!: ProductModalComponent;
 
   filterMenuList=[
     {
@@ -62,5 +65,9 @@ export class SearchPageComponent implements OnInit{
   toggleMenu(x: number){
     console.log('sono il menu ' + x)
     this.filterMenuList[x].opened=!this.filterMenuList[x].opened;
+  }
+
+  openProductModal(productIndex: number) {
+    this.childComponent.openModal()
   }
 }
