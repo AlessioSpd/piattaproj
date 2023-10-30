@@ -1,0 +1,19 @@
+@import "../../../assets/styles/const-style.scss";
+
+.mainContainer {
+    background-color: $background-color;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+    &__loginPanel {
+        background-color: $background-panel-color;
+        border-radius: 20px;
+        width: 500px;
+        height: 900px;
+        box-shadow: -10px 10px 10px rgb(190, 190, 190);
+    }
+}

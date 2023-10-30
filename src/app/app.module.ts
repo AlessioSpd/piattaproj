@@ -9,6 +9,7 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
 import { IDropMenuComponent } from './customWidget/idrop-menu/idrop-menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductModalComponent } from './components/product-modal/product-modal.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProductModalComponent } from './components/product-modal/product-modal.
     PageHeaderComponent,
     IDropMenuComponent,
     ProductModalComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
