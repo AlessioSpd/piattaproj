@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductModalComponent } from './components/product-modal/product-modal.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
+import { CartPageComponent } from './components/cart-page/cart-page.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     IDropMenuComponent,
     ProductModalComponent,
     LoginPageComponent,
+    CartPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@
                     <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer" [ngStyle]="{'display': !filterMenu.opened ? 'none' : 'inline'}">
                         <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item" *ngFor="let item of filterMenu.itemMenu; index as i">
                             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item--checkbox">
-                                <input type="checkbox" [checked]="item.checked" [ngModel]="inputValue" (ngModelChange)="inputChange(i)">
+                                <input type="checkbox" [checked]="item.checked" [ngModel]="inputValue" (ngModelChange)="inputChange(i)" [disabled]="item.quantita <= 0">
                             </div>
                             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item--nameLabel">{{item.nome}}</div>
                             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item--quantityLabel">({{item.quantita}})</div>

@@ -1,6 +1,7 @@
 @import "../../../assets/styles/const-style.scss";
 
 .topBar {
+    font-family: $main_font;
     width: 100%;
     background-color: $background-panel-color;
     height: 40px;
@@ -70,6 +71,7 @@
     height: 70px;
     background-color: $background-panel-color;
     @include flex_display(none, center);
+    font-family: $main_font;
 
     & > * {
         width: 100%;
