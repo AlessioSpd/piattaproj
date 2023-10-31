@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,11 +6,17 @@ import { Router } from '@angular/router';
   templateUrl: './page-header.component.html',
   styleUrls: ['./page-header.component.scss']
 })
-export class PageHeaderComponent {
+export class PageHeaderComponent implements OnInit {
+
+  currentPath: string = '';
 
   @Output() searchInputValueEmitter = new EventEmitter<string>();
 
   constructor(private router: Router){}
+  
+  ngOnInit(): void {
+   this.currentPath = this.router.url.replace('/','');
+  }
 
   inputValue: string = '';
 
@@ -18,8 +24,11 @@ export class PageHeaderComponent {
     this.searchInputValueEmitter.emit(newValue);
   }
   
-  changePage(){
-    this.router.navigate(['/search']);
+  changePage(path: string){
+    if(path == this.currentPath) return
+
+    this.router.navigate(['/' + path]);
+    console.log('cambio')
   }
 
 }

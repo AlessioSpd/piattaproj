@@ -168,7 +168,7 @@
                     &--productImage {
                         width: 100%;
                         height: 350px;
-                        @include image_background('../../../assets/imgs/product_image.jfif', contain);
+                        @include image_background('../../../assets/imgs/product_image.png', contain);
                     }
 
                     &__productInfo {
