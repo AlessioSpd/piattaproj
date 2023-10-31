@@ -11,13 +11,24 @@ export class SearchPageService {
 
   constructor(private http: HttpClient) {}
 
-  getListaProdotti(searchValue: string) {
-    if(searchValue == '')
-      return this.http.get<Array<IProdotto>>(this.path + "/prodotti/tutti_prodotti")
+  getListaProdotti(searchValue: string, brandCheck: string[]) {
+
+    console.log(searchValue + ' - ' + brandCheck.join())
+    if(searchValue == '' && brandCheck.length == 0)
+      {console.log('entrato su')
+      return this.http.get<Array<IProdotto>>(this.path + "/prodotti/tutti_prodotti")}
     else {
-      let params = new HttpParams();
-      params = params.set('nome', searchValue);
-      return this.http.get<Array<IProdotto>>(this.path + "/prodotti/ricerca_per_nome", { params })
+      console.log('entrato giu')
+      if(brandCheck.length == 0) brandCheck.push('')
+
+      console.log(searchValue +' - ' + brandCheck.join())
+
+      let params =new HttpParams({ fromObject: {
+        'nome': searchValue,
+        'marche': brandCheck.join()
+      }})
+      
+      return this.http.get<Array<IProdotto>>(this.path + "/prodotti/ricerca", { params })
     }
   }
 }
