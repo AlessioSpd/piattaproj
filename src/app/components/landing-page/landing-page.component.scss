@@ -1,13 +1,11 @@
 @import "../../../assets/styles/const-style.scss";
 
-
-
 .pageContainer {
     position: absolute;
     width: 100%;
     height: auto;
     overflow-y: hidden;
-    font-family: Spartan;
+    font-family: $main_font;
 
     &__carouselContainer {
         width: 100%;
@@ -17,18 +15,12 @@
         
         &__infoContainer {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            @include flex_display(center, center, column, 10px);
 
             &__smallHeaderContainer {
                 width: auto;
                 height: 30px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include flex_display(center, center, row);
                 font-size: 20px;
             }
 
@@ -38,9 +30,7 @@
                 width: auto;
                 height: auto;
                 font-size: 38px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include flex_display(center, center, row);
             }
 
             &__descriptionContainer {
@@ -57,9 +47,7 @@
                 height: 40px;
                 border-radius: 5px;
                 background-color: coral;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include flex_display(center, center, row);
                 color: white;
             }
         }
@@ -76,9 +64,7 @@
     &__helpInfoContainer {
         width: 100%;
         height: 300px;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
+        @include flex_display(space-evenly, center, row);
         background-color: $background-color;
 
         &__helpItemContainer {

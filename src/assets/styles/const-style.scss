@@ -1,6 +1,7 @@
 $background-color: #F5F5F5;
 $background-panel-color: white;
 $available_green:rgb(36, 204, 36);
+$main_font: Spartan;
 
 @mixin image_background($url:'', $size: 16px 16px, $repeat: no-repeat, $position: center) {
     @if $url != ''{
@@ -9,6 +10,15 @@ $available_green:rgb(36, 204, 36);
     background-size: $size;
     background-repeat: $repeat;
     background-position: $position;
+}
+
+@mixin flex_display($jc: center, $ai: center, $dir: row, $gap: 0px, $wrap: no-wrap) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $dir;
+    gap: $gap;
+    flex-wrap: $wrap;
 }
 
 // assicurati che il parent sia positio: relative
@@ -20,9 +30,7 @@ $available_green:rgb(36, 204, 36);
     right: -7px;
     background-color: rgb(197, 0, 0);
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex_display();
     font-size: 15px;
     padding-top: 2px;
 }
@@ -36,9 +44,7 @@ $available_green:rgb(36, 204, 36);
     background-color: black;
     color: white;
     border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex_display();
     font-size: 12px;
     padding-top: 2px;
 }

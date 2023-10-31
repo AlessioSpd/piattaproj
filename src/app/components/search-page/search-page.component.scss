@@ -5,7 +5,7 @@
     width: 100%;
     height: 100%;
     background-color: $background-color;
-    font-family: Spartan;
+    font-family: $main_font;
 
     &__searchResultContainer {
         margin-top: 15px;
@@ -22,16 +22,12 @@
                 background-color: $background-panel-color;
                 width: 100%;
                 height: auto;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                gap: 10px;
+                @include flex_display(none, center, column, 10px);
 
                 &__filterMenu {
                     width: 80%;
                     height: auto;
-                    display: flex;
-                    flex-direction: column;
+                    @include flex_display(none, none, column);
                     transition: all 1s ease;
     
                     &:nth-child(1) {
@@ -43,9 +39,7 @@
                     }
     
                     &__toggleButton {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
+                        @include flex_display(space-between);
                         width: 100%;
                         height: 30px;
     
@@ -100,16 +94,13 @@
                 height: 120px;
                 background-color: $background-panel-color;
                 border-radius: 5px;
-                display: flex;
-                flex-direction: column;
+                @include flex_display(none, none, column);
 
                 &__row {
                     // background-color: coral;
                     width: 100%;
                     height: 50%;
-                    display: flex;
-                    justify-content: space-evenly;
-                    align-items: center;
+                    @include flex_display(space-evenly);
                 }
             }
 
@@ -117,10 +108,7 @@
                 margin-top: 15px;
                 width: 100%;
                 height: auto;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                gap: 20px;
+                @include flex_display(flex-start, none, row, 20px, wrap);
 
                 &__productCard {
                     width: 370px;
@@ -132,18 +120,14 @@
                     &--brandName {
                         width: auto;
                         height: 40px;
-                        // background-color: coral;
-                        display: flex;
-                        align-items: flex-end;
+                        @include flex_display(none, flex-end);
                         padding-left: 20px;
                     }
 
                     &__productNameRank {
                         width: auto;
-                        height: 40px;                       
-                        display: flex;
-                        align-items: flex-start;
-                        justify-content: space-between;                        
+                        height: 40px;
+                        @include flex_display(space-between, flex-start, row, 20px, wrap);
                         margin-top: 5px;
                         font-size: 22px;
                         
@@ -174,16 +158,12 @@
                     &__productInfo {
                         width: 100%;
                         height: 65px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
+                        @include flex_display(space-between);
 
                         &__availability {
                             width: 100px;
-                            height: 30px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
+                            height: 30px;                            
+                            @include flex_display();
                             margin-left: 30px;
                             background-color: $background-color;
                             padding-top: 1px;

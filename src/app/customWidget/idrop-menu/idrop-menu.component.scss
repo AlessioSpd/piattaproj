@@ -8,9 +8,7 @@
     border-radius: 5px;
     font-size: 15px;
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex_display(space-between);
 
     &--label {
         color: grey;
@@ -38,8 +36,7 @@
             height: 20px;
             padding-left: 10px;
             padding-right: 10px;
-            display: flex;
-            align-items: center;
+            @include flex_display(none);
             user-select: none;
 
             &:nth-child(1) {

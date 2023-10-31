@@ -4,16 +4,76 @@
     background-color: $background-color;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex_display(center, center, row);
     position: absolute;
+    font-family: $main_font;
 
     &__loginPanel {
         background-color: $background-panel-color;
         border-radius: 20px;
-        width: 500px;
-        height: 900px;
+        width: 400px;
+        height: 800px;
         box-shadow: -10px 10px 10px rgb(190, 190, 190);
+        @include flex_display(none, center, column, 30px);
+
+        &__icon {
+            margin-top: 80px;
+            width: 150px;
+            height: 150px;
+            @include image_background('../../../assets/icons/user.png', contain);
+        }
+
+        &__label {
+            font-size: 40px;
+        }
+
+        &__loginInputContainer {
+            width: 80%;
+            height: 400px;
+            @include flex_display(none, center, column, 20px);
+
+            &__inputContainer {
+                background-color: coral;
+                width: 80%;
+                height: 50px;
+                @include flex_display(center, center, column);
+                border-radius: 20px;
+                background-color: $background-color;
+                box-shadow: -5px 5px 1px rgb(190, 190, 190), 5px 5px 1px rgb(216, 216, 216);
+
+                &--input {
+                    width: 80%;
+                    height: 80%;
+                    background-color: $background-color;
+                    border: none;
+                    outline: none;
+                    border-radius: 20px;
+                    font-family: $main_font;
+
+                    &::placeholder {
+                        color: #b9b9b9;
+                    }
+                }
+            }
+
+            &__submitButton {
+                margin-top: 30px;
+                width: 80%;
+                height: 50px;
+                background-color: $background-color;
+                border-radius: 20px;
+                user-select: none;
+                transition: all .2s;
+                box-shadow: -5px 5px 1px rgb(190, 190, 190), 5px 5px 1px rgb(216, 216, 216);
+                color: #b9b9b9;
+
+                &:active {
+                    background-color: rgb(219, 219, 219);
+                    color: black;
+                }
+
+                @include flex_display();                
+            }
+        }
     }
 }
