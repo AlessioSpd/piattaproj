@@ -18,7 +18,7 @@ export class SearchPageComponent implements OnInit{
       itemMenu: [
         {checked: false, nome: '', quantita: 0}
       ]
-    };
+  };
 
   prova = {
     placeHolder: "Stock status...",
@@ -31,39 +31,68 @@ export class SearchPageComponent implements OnInit{
   prodotti: Array<IProdotto> = [];
 
   constructor(private myServ: SearchPageService) {}
-  
+
   ngOnInit(): void {
     this.myServ.getListaProdotti('', this.lastBrandCheck).subscribe((res) => {
       this.prodotti = res;
-      
-      let marcheQuant: {marca: string, quantita: number}[] = [];
-      let flag: boolean = false;
-
-      this.prodotti.map( (prodotto) => {
-        for (let i = 0; i < marcheQuant.length; i++) {
-          if(marcheQuant[i].marca === prodotto.marca) {
-            marcheQuant[i].quantita++;
-            flag = true;
-            break;
-          }
-        }
-
-        if(!flag) {
-          marcheQuant.push({marca: prodotto.marca, quantita: 1})
-          flag = false;
-        }
-      })
-
-      console.log(marcheQuant);
-      this.filterMenu.itemMenu.pop()
-
-      marcheQuant.map(item => {
-        this.filterMenu.itemMenu.push(
-          {checked: false, nome: item.marca, quantita: item.quantita}
-        )
-      });
+      let brandQuantityList = this.brandQuantity()
+      this.createFilterMenu(brandQuantityList)
     })
   };
+
+  brandQuantity() {
+    let marcheQuant: {marca: string, quantita: number}[] = [];
+    let flag: boolean = false;
+
+    this.prodotti.map( (prodotto) => {
+      for (let i = 0; i < marcheQuant.length; i++) {
+        if(marcheQuant[i].marca === prodotto.marca) {
+          marcheQuant[i].quantita++;
+          flag = true;
+          break;
+        }
+      }
+
+      if(!flag) {
+        marcheQuant.push({marca: prodotto.marca, quantita: 1})
+        flag = false;
+      }
+    })
+
+    return marcheQuant;
+  }
+
+  createFilterMenu(brandQuantityList: {marca: string, quantita: number}[]) {    
+    this.filterMenu = {
+      nome:"Marche",
+      opened: true,
+      itemMenu: [
+        {checked: false, nome: '', quantita: 0}
+      ]
+    };
+    
+    this.filterMenu.itemMenu.pop()
+    brandQuantityList.map(item => {
+      this.filterMenu.itemMenu.push(
+        {checked: false, nome: item.marca, quantita: item.quantita}
+      )
+    });
+  }
+
+  updateFilterMenu(brandQuantityList: {marca: string, quantita: number}[]) {
+    this.filterMenu.itemMenu.map( item => {
+      item.quantita = 0
+    })
+
+    brandQuantityList.map(item => {
+      for(let i = 0; i < this.filterMenu.itemMenu.length; i++) {
+        if(item.marca == this.filterMenu.itemMenu[i].nome) {
+          this.filterMenu.itemMenu[i].quantita = item.quantita
+          break
+        }
+      }
+    })
+  }
 
   toggleMenu(){
     this.filterMenu.opened=!this.filterMenu.opened;
@@ -77,7 +106,8 @@ export class SearchPageComponent implements OnInit{
     this.lastSearchValue = searchValue;
     this.myServ.getListaProdotti(searchValue, this.lastBrandCheck).subscribe((res) => {
       this.prodotti = res;
-      console.log(this.prodotti);
+      let brandQuantityList = this.brandQuantity()
+      this.updateFilterMenu(brandQuantityList)
     })
   }
 
@@ -99,45 +129,9 @@ export class SearchPageComponent implements OnInit{
     this.lastBrandCheck = tempBrand;
 
     this.myServ.getListaProdotti(this.lastSearchValue, this.lastBrandCheck).subscribe(res => {
-
-      this.filterMenu = {
-        nome:"Marche",
-        opened: true,
-        itemMenu: [
-          {checked: false, nome: '', quantita: 0}
-        ]
-      };
-
       this.prodotti = res;
-      
-      let marcheQuant: {marca: string, quantita: number}[] = [];
-      let flag: boolean = false;
-
-      this.prodotti.map( (prodotto) => {
-        for (let i = 0; i < marcheQuant.length; i++) {
-          if(marcheQuant[i].marca === prodotto.marca) {
-            marcheQuant[i].quantita++;
-            flag = true;
-            break;
-          }
-        }
-
-        if(!flag) {
-          marcheQuant.push({marca: prodotto.marca, quantita: 1})
-          flag = false;
-        }
-      })
-
-      console.log(marcheQuant);
-      this.filterMenu.itemMenu.pop()
-
-      marcheQuant.map(item => {
-        this.filterMenu.itemMenu.push(
-          {checked: false, nome: item.marca, quantita: item.quantita}
-        )
-      });
-
-      console.log(this.filterMenu.itemMenu)
+      let brandQuantityList = this.brandQuantity()
+      this.updateFilterMenu(brandQuantityList)
     })
   }
 }
