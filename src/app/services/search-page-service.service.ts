@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IProdotto } from '../models/IProdotto';
 
 @Injectable({
@@ -7,11 +7,17 @@ import { IProdotto } from '../models/IProdotto';
 })
 export class SearchPageService {
 
-  path: string = "localhost:8080"
+  path: string = "http://localhost:8080"
 
   constructor(private http: HttpClient) {}
 
-  getListaProdotti() {
-    return this.http.get<Array<IProdotto>>(this.path + "/prodotti/tutti_prodotti")
+  getListaProdotti(searchValue: string) {
+    if(searchValue == '')
+      return this.http.get<Array<IProdotto>>(this.path + "/prodotti/tutti_prodotti")
+    else {
+      let params = new HttpParams();
+      params = params.set('nome', searchValue);
+      return this.http.get<Array<IProdotto>>(this.path + "/prodotti/ricerca_per_nome", { params })
+    }
   }
 }

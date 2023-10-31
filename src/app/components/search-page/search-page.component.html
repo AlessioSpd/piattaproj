@@ -1,23 +1,22 @@
 <div class="mainContainer">
-    <app-page-header></app-page-header>
+    <app-page-header (searchInputValueEmitter)="startSearch($event)"></app-page-header>
     
     <div class="mainContainer__searchResultContainer">
 
         <div class="mainContainer__searchResultContainer__filterPanelContainer">
             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel">
-                <button (click)="prendiDati()">premimi</button>
-                <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu" *ngFor="let menu of filterMenuList; index as i">
-                    <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__toggleButton" (click)="toggleMenu(i)">
-                        <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__toggleButton--title">{{menu.nome}}</div>
+                <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu">
+                    <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__toggleButton" (click)="toggleMenu()">
+                        <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__toggleButton--title">{{filterMenu.nome}}</div>
                         <div
                             class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__toggleButton--icon"
-                            [ngStyle]="{'transform': menu.opened ? 'scaleY(-1)' : 'scaleY(1)'}"
+                            [ngStyle]="{'transform': filterMenu.opened ? 'scaleY(-1)' : 'scaleY(1)'}"
                         ></div>
                     </div>
-                    <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer" [ngStyle]="{'display': !menu.opened ? 'none' : 'inline'}">
-                        <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item" *ngFor="let item of menu.itemMenu; index as i">
+                    <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer" [ngStyle]="{'display': !filterMenu.opened ? 'none' : 'inline'}">
+                        <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item" *ngFor="let item of filterMenu.itemMenu; index as i">
                             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item--checkbox">
-                                <input type="checkbox" [checked]="item.checked">
+                                <input type="checkbox" [checked]="item.checked" [ngModel]="inputValue" (ngModelChange)="inputChange(i)">
                             </div>
                             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item--nameLabel">{{item.nome}}</div>
                             <div class="mainContainer__searchResultContainer__filterPanelContainer__filterPanel__filterMenu__filterContainer__item--quantityLabel">({{item.quantita}})</div>
@@ -30,31 +29,24 @@
         <div class="mainContainer__searchResultContainer__resultPanel">
             <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel">
                 <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel__row">
-                    <!-- poi diventa un componente a cui passi un oggetto IDropMenu dove ci saranno tutte le info -->
                     <app-idrop-menu [dropMenu]="prova"></app-idrop-menu>
                 </div>
                 <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel__row"></div>
             </div>
             <div class="mainContainer__searchResultContainer__resultPanel__productsContainer">
-                <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard" *ngFor="let item of productList; index as i" (click)="openProductModal(i)">
-                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--badge" *ngIf="item.new">NIU</div>
+                <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard" *ngFor="let item of prodotti; index as i" (click)="openProductModal(item)">
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--brandName">{{item.marca}}</div>
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank">
                         <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank--name">{{item.nome}}</div>
-                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank--rank">
-                            {{item.rank}}
-                            <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productNameRank--rank--icon"></div>
-                        </div>
                     </div>
-                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--productImage"
-                        [ngStyle]="{'background-image': 'url('+item.img+')'}"></div>
+                    <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--productImage"></div>
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo">
                         <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo__availability"
-                            [ngStyle]="{'color': item.disponibile ? 'rgb(36, 204, 36)' : 'grey'}"
+                            [ngStyle]="{'color': item.quantita > 0 ? 'rgb(36, 204, 36)' : 'grey'}"
                         >
-                            {{item.disponibile ? "Available" : "Not Available"}}
+                            {{item.quantita > 0 ? "Available" : "Not Available"}}
                         </div>
-                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo--price">€{{item.costo}}</div>
+                        <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard__productInfo--price">€{{item.prezzo}}</div>
                     </div>
                 </div>
             </div>

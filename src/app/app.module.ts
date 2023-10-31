@@ -10,6 +10,7 @@ import { IDropMenuComponent } from './customWidget/idrop-menu/idrop-menu.compone
 import { HttpClientModule } from '@angular/common/http';
 import { ProductModalComponent } from './components/product-modal/product-modal.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

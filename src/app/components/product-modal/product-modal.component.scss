@@ -25,7 +25,7 @@
         &__itemPhotosContainer {
             width: 70%;
             border-right: solid 5px rgb(207, 207, 207);
-            @include image_background('../../../assets/imgs/1.png', contain);
+            @include image_background('../../../assets/imgs/product_image.jfif', contain);
 
             &__changePhotoContainer {
                 position: relative;
@@ -41,7 +41,7 @@
                     width: 70px;
                     height: 70px;
                     border: solid 1px rgb(189, 189, 189);
-                    @include image_background('../../../assets/imgs/1.png', contain);
+                    @include image_background('../../../assets/imgs/product_image.jfif', contain);
                 }
             }
         }

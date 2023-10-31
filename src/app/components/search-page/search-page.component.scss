@@ -129,10 +129,6 @@
                     background-color: $background-panel-color;
                     position: relative;
 
-                    &--badge {
-                        @extend .newsBadge;
-                    }
-
                     &--brandName {
                         width: auto;
                         height: 40px;
@@ -172,7 +168,7 @@
                     &--productImage {
                         width: 100%;
                         height: 350px;
-                        @include image_background('', contain);
+                        @include image_background('../../../assets/imgs/product_image.jfif', contain);
                     }
 
                     &__productInfo {

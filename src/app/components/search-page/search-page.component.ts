@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchPageService } from 'src/app/services/search-page-service.service';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
+import { IProdotto } from 'src/app/models/IProdotto';
 
 @Component({
   selector: 'app-search-page',
@@ -11,63 +12,74 @@ export class SearchPageComponent implements OnInit{
 
   @ViewChild(ProductModalComponent) childComponent!: ProductModalComponent;
 
-  filterMenuList=[
-    {
-      nome:"Prodotti",
-      opened: false,
-      itemMenu: [
-        {checked: false, nome: "Cuffie", quantita: 123},
-        {checked: false, nome: "Tastiere", quantita: 45}
-      ]
-    },
-    {
+  filterMenu = {
       nome:"Marche",
       opened: false,
       itemMenu: [
-        {checked: false, nome: "Apple", quantita: 123},
-        {checked: false, nome: "Samsung", quantita: 45},
-        {checked: false, nome: "Huawei", quantita: 1}
+        {checked: false, nome: '', quantita: 0}
       ]
-    },
-    {
-      nome:"Tipo",
-      opened: false,
-      itemMenu: [
-        {checked: false, nome: "Meccaniche", quantita: 123},
-        {checked: false, nome: "Wireless", quantita: 45}
-      ]
-    },
-  ];
-
-  productList = [
-    {marca:"Apple", nome:"Apple dildo tech v1", rank: 5, disponibile: true, costo: '30.00', img:'../../../assets/imgs/1.png', new: false},
-    {marca:"Samsung", nome:"Samsung dildo tech v2", rank: 2.5, disponibile: false, costo: '20.00', img:"../../../assets/imgs/2.png", new: true},
-    {marca:"Huauei", nome:"asdfsadfsd", rank: 1, disponibile: true, costo: '0.01', img:"../../../assets/imgs/1.png", new: false},
-  ]
+    };
 
   prova = {
     placeHolder: "Stock status...",
     options: ['All','In stock','Out of stock']
   }
 
+  prodotti: Array<IProdotto> = [];
+
   constructor(private myServ: SearchPageService) {}
   
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.myServ.getListaProdotti('').subscribe((res) => {
+      this.prodotti = res;
+      
+      let marcheQuant: {marca: string, quantita: number}[] = [];
+      let flag: boolean = false;
+
+      this.prodotti.map( (prodotto) => {
+        for (let i = 0; i < marcheQuant.length; i++) {
+          if(marcheQuant[i].marca === prodotto.marca) {
+            marcheQuant[i].quantita++;
+            flag = true;
+            break;
+          }
+        }
+
+        if(!flag) {
+          marcheQuant.push({marca: prodotto.marca, quantita: 1})
+          flag = false;
+        }
+      })
+
+      console.log(marcheQuant);
+      this.filterMenu.itemMenu.pop()
+
+      marcheQuant.map(item => {
+        this.filterMenu.itemMenu.push(
+          {checked: false, nome: item.marca, quantita: item.quantita}
+        )
+      });
+    })
+  };
+
+  toggleMenu(){
+    this.filterMenu.opened=!this.filterMenu.opened;
   }
 
-  prendiDati() {
-    this.myServ.getListaProdotti().subscribe((res) => {
-      console.log(res);
+  openProductModal(selectedItem: IProdotto) {
+    this.childComponent.openModal(selectedItem)
+  }
+
+  startSearch(searchValue: string) {
+    this.myServ.getListaProdotti(searchValue).subscribe((res) => {
+      this.prodotti = res;
+      console.log(this.prodotti);
     })
   }
 
-  toggleMenu(x: number){
-    console.log('sono il menu ' + x)
-    this.filterMenuList[x].opened=!this.filterMenuList[x].opened;
-  }
+  inputValue: string = '';
 
-  openProductModal(productIndex: number) {
-    this.childComponent.openModal()
+  inputChange(index: number) {
+    console.log(index + ' sono cambiato')
   }
 }

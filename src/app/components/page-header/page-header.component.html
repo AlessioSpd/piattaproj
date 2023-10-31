@@ -23,7 +23,7 @@
     <div class="navBar__searchBarContainer">
         <div class="navBar__searchBarContainer__searchBar">
             <div class="navBar__searchBarContainer__searchBar__inputContainer">
-                <input type="text" placeholder="Search something...">
+                <input type="text" placeholder="Search something..." [ngModel]="inputValue" (ngModelChange)="inputChange($event)">
             </div>
             <div class="navBar__searchBarContainer__searchBar__searchIcon" (click)="changePage()"></div>
         </div>
