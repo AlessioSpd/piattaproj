@@ -1,0 +1,39 @@
+@import "../../../assets/styles/const-style.scss";
+
+.modalContainer {
+    background-color: rgba(0, 0, 0, 0.164);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: $main_font;
+
+    &__modalPanel {
+        background-color: $background-color;
+        width: 250px;
+        height: 80px;
+        border-radius: 15px;
+        @include flex_display();
+        box-shadow: 5px 5px grey;
+
+        &--successLabel {
+            font-size: 25px;
+            color: rgb(0, 153, 0);
+        }
+
+        &--icon {
+            width: 30px;
+            height: 30px;
+            // background-color: red;
+            background-image: url('../../../assets/icons/check.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            @include image_background()
+        }
+
+    }
+}

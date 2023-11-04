@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class PageHeaderComponent implements OnInit {
 
+  cartBadge: number = 0;
+
   currentPath: string = '';
 
   @Output() searchInputValueEmitter = new EventEmitter<string>();
@@ -16,6 +18,7 @@ export class PageHeaderComponent implements OnInit {
   
   ngOnInit(): void {
    this.currentPath = this.router.url.replace('/','');
+   //chiamata che fa la get del numero di prodotti all'interno del carrello e modifica il badge
   }
 
   inputValue: string = '';

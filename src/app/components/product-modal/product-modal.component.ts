@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { IProdotto } from 'src/app/models/IProdotto';
 
 @Component({
@@ -8,7 +8,7 @@ import { IProdotto } from 'src/app/models/IProdotto';
 })
 export class ProductModalComponent {
   
-  @Input() openBoolean: Boolean = false;
+  openBoolean: Boolean = false;
 
   selectedItem: IProdotto = new IProdotto(0, '', '', 0, 0, "");
 
