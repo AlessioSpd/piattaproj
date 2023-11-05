@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AdminPageComponent {
   lastActive: string = 'Utenti';
-  userDetailsFlag: boolean = false;
+  userDetailsFlag: boolean = true;
   
   tabMenu = [
     { label: "Utenti", active: true },

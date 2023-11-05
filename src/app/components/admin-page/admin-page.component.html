@@ -21,14 +21,25 @@
                     <input type="text" [placeholder]="'Search user...'">
                 </div>
                 <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer">
-                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item" *ngFor="let item of userTestItem; index as i">
-                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--userMail" (click)="openUserDetail(i)">{{item}}</div>
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item" (click)="openUserDetail(i)" *ngFor="let item of userTestItem; index as i">
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--userMail">{{item}}</div>
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--deleteIcon"></div>
                     </div>
                 </div>
             </div>
             <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer">
-                <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel" (click)="openUserDetail(1)" *ngIf="userDetailsFlag"></div>
+                <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel" (click)="openUserDetail(1)" *ngIf="userDetailsFlag">
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__user-name-container">
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__user-name-container__nameLabel">Nome :</div>
+                    </div>
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userEmailContainer"></div>
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer">
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__searchInput"></div>
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer">
+                            <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__item"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="adminPageContainer__contentPanelContainer__contentPanel" *ngSwitchCase="'Prodotti'">prodotti</div>
