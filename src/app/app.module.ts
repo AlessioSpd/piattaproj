@@ -13,6 +13,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { FormsModule } from '@angular/forms';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { OrderConfirmModalComponent } from './components/order-confirm-modal/order-confirm-modal.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { OrderConfirmModalComponent } from './components/order-confirm-modal/ord
     LoginPageComponent,
     CartPageComponent,
     OrderConfirmModalComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,

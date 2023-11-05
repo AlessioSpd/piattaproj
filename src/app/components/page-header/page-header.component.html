@@ -4,7 +4,7 @@
         <div class="topBar__title--icon" (click)="changePage('')"></div>
         <div class="topBar__title--label">Il migliore sito online per dildi tech</div>
     </div>
-    <div class="topBar__options">
+    <div class="topBar__options" *ngIf="mood=='user'">
         <div class="topBar__options__phone">
             <div class="topBar__options__phone--icon"></div>
             <div class="topBar__options__phone--label">1231232123</div>
@@ -16,14 +16,11 @@
         </div>
     </div>
 </div>
-<div class="navBar">
-    <div class="navBar__filterMenuContainer">
-        <div class="navBar__filterMenuContainer__buttonIcon"></div>
-    </div>
+<div class="navBar" *ngIf="mood=='user'">
     <div class="navBar__searchBarContainer">
         <div class="navBar__searchBarContainer__searchBar">
             <div class="navBar__searchBarContainer__searchBar__inputContainer">
-                <input type="text" placeholder="Search something..." [ngModel]="inputValue" (ngModelChange)="inputChange($event)">
+                <input type="text" [placeholder]="'Search something...'" [ngModel]="inputValue" (ngModelChange)="inputChange($event)">
             </div>
             <div class="navBar__searchBarContainer__searchBar__searchIcon"
                 (click)="changePage('search')"
@@ -36,7 +33,7 @@
         <div class="navBar__loginSectionContainer--label">Log in / Sign Up</div>
     </div>
     <div class="navBar__cartButtonContainer">
-        <div class="navBar__cartButtonContainer--icon">
+        <div class="navBar__cartButtonContainer--icon" (click)="changePage('cart')">
             <div class="navBar__cartButtonContainer--icon--badge">{{cartBadge}}</div>
         </div>
     </div>

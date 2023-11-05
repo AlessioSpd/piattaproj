@@ -4,12 +4,14 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 const routes: Routes = [
   { path:'', component: LandingPageComponent },
   { path:'search', component: SearchPageComponent },
-  { path: 'login', component: LoginPageComponent},
-  { path: 'cart', component: CartPageComponent}
+  { path: 'login', component: LoginPageComponent },
+  { path: 'cart', component: CartPageComponent} ,
+  { path: 'admin', component: AdminPageComponent }
 ];
 
 @NgModule({

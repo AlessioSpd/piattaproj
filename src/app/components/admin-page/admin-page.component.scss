@@ -1,0 +1,169 @@
+@import '../../../assets/styles/const-style.scss';
+
+.adminPageContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-family: $main_font;
+    
+    &__topBar {
+        width: 100%;
+        height: 40px;
+        margin-top: 15px;
+        display: flex;
+
+        &__tabMenu {
+            width: 90%;
+            display: flex;
+            height: 40px;
+
+            &__tabMenuItem {
+                @include flex_display();
+                width: auto;
+                height: 100%;
+                font-size: 25px;
+                user-select: none;
+                cursor: pointer;
+                padding-left: 10px;
+                padding-right: 10px;
+                border-radius: 8px 8px 0px 0px;
+
+                &:nth-child(1) {
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        &__userInfo {
+            width: 5%;
+            height: 25px;
+            @include flex_display();
+
+            &__username {
+                flex: 1;
+                @include flex_display(flex-end);
+                padding-top: 5px;
+            }
+            
+            &--icon {
+                flex: 1;
+                width: 100%;
+                height: 100%;
+                @include image_background('../../../assets/icons/user.png', contain);
+            }
+        }
+    }
+
+    &__contentPanelContainer {
+        width: 100%;
+        height: calc(100% - 95px);
+        background-color: $background-panel-color;
+
+        &__contentPanel {
+            width: 100%;
+            height: 100%;
+            display: flex;
+
+            &__userListContainer {
+                width: 500px;
+                height: 100%;
+                @include flex_display(flex-start, center, column, 20px);
+
+                &__searchBarContainer {
+                    margin-top: 20px;
+                    width: 80%;
+                    height: 45px;
+                    background-color: $background-color;
+                    border-radius: 15px;
+                    @include flex_display($jc: flex-start);
+
+                    & > input {
+                        margin-left: 30px;
+                        margin-right: 30px;
+                        width: 100%;
+                        height: 80%;
+                        outline: none;
+                        border: none;
+                        background-color: transparent;
+                        font-family: $main_font;
+                        font-size: 15px;
+    
+                        &::placeholder {
+                            color: #b9b9b9;
+                        }
+                    }
+                }
+
+                &__itemListContainer {
+                    width: 80%;
+                    height: 75%;
+                    background-color: $background-color;
+                    border-radius: 15px;
+                    @include flex_display(flex-start, center, column, 10px);
+                    overflow-y: scroll;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    &__item {
+                        width: 95%;
+                        min-height: 40px;
+                        background-color: $background-panel-color;
+                        border-radius: 10px;
+                        @include flex_display(space-between);
+                        cursor: pointer;
+
+                        &:nth-child(1) {
+                            margin-top: 10px;
+                        }
+                        
+                        &--userMail {
+                            margin-left: 10px;
+                        }
+
+                        &--deleteIcon {
+                            width: 30px;
+                            height: 30px;
+                            @include image_background('../../../assets/icons/delete.png', 20px 20px);
+                            margin-right: 10px;
+                            cursor: pointer;
+                            border-radius: 100%;
+                            transition: all .2s;
+
+                            &:active {
+                                background-color: rgb(255, 184, 184);
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            &__userDetailContainer {
+                width: calc(100% - 500px);
+                height: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                &__userDetailPanel {
+                    margin-top: 20px;
+                    border-radius: 15px;
+                    width: 95%;
+                    height: calc(75% + 65px);
+                    background-color: coral;
+                }
+            }
+        }
+    }
+}
+
+.active {
+    color: rgb(46, 144, 255);
+    background-color: white;
+}
+
+.inactive {
+    color: rgb(163, 163, 163);
+}

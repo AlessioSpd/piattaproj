@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 export class PageHeaderComponent implements OnInit {
 
   cartBadge: number = 0;
-
   currentPath: string = '';
+  @Input() mood: string = "user";
 
   @Output() searchInputValueEmitter = new EventEmitter<string>();
 
@@ -28,7 +28,7 @@ export class PageHeaderComponent implements OnInit {
   }
   
   changePage(path: string){
-    if(path == this.currentPath) return
+    if(path == this.currentPath) return;
 
     this.router.navigate(['/' + path]);
     console.log('cambio')

@@ -1,0 +1,36 @@
+<div class="adminPageContainer">
+    <app-page-header [mood]="'admin'"></app-page-header>
+
+    <div class="adminPageContainer__topBar">
+        <div class="adminPageContainer__topBar__tabMenu">
+            <div class="adminPageContainer__topBar__tabMenu__tabMenuItem"
+                *ngFor="let item of tabMenu; index as i"
+                [ngClass]="{'active': item.active, 'inactive': !item.active}"
+                (click)="setActive(i)"
+            >{{item.label}}</div>
+        </div>
+        <div class="adminPageContainer__topBar__userInfo">
+            <div class="adminPageContainer__topBar__userInfo--icon"></div>
+            <div class="adminPageContainer__topBar__userInfo__username">Admin</div>
+        </div>
+    </div>
+    <div class="adminPageContainer__contentPanelContainer" [ngSwitch]="lastActive">
+        <div class="adminPageContainer__contentPanelContainer__contentPanel" *ngSwitchCase="'Utenti'">
+            <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer">
+                <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__searchBarContainer">
+                    <input type="text" [placeholder]="'Search user...'">
+                </div>
+                <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer">
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item" *ngFor="let item of userTestItem; index as i">
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--userMail" (click)="openUserDetail(i)">{{item}}</div>
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--deleteIcon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer">
+                <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel" (click)="openUserDetail(1)" *ngIf="userDetailsFlag"></div>
+            </div>
+        </div>
+        <div class="adminPageContainer__contentPanelContainer__contentPanel" *ngSwitchCase="'Prodotti'">prodotti</div>
+    </div>
+</div>

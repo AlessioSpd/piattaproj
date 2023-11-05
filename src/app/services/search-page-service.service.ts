@@ -7,7 +7,7 @@ import { IProdotto } from '../models/IProdotto';
 })
 export class SearchPageService {
 
-  path: string = "http://localhost:8080"
+  path: string = "http://localhost:8081"
 
   constructor(private http: HttpClient) {}
 
