@@ -29,10 +29,25 @@
             </div>
             <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer">
                 <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel" (click)="openUserDetail(1)" *ngIf="userDetailsFlag">
-                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__user-name-container">
-                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__user-name-container__nameLabel">Nome :</div>
+
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__name-surnameInfoContainer">
+                        <div class="infoContainer">
+                            <div class="infoContainer--label">Nome:</div>
+                            <div class="infoContainer--info">Alessio</div>
+                        </div>
+                        <div class="infoContainer">
+                            <div class="infoContainer--label">Cognome:</div>
+                            <div class="infoContainer--info">Spadafora</div>
+                        </div>
                     </div>
-                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userEmailContainer"></div>
+
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userEmailContainer">
+                        <div class="infoContainer">
+                            <div class="infoContainer--label">Email:</div>
+                            <div class="infoContainer--info">alessiospadafora.main@gmail.com</div>
+                        </div>
+                    </div>
+
                     <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer">
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__searchInput"></div>
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer">

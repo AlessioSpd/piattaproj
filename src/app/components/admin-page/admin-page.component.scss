@@ -154,18 +154,15 @@
                     height: calc(75% + 65px);
                     background-color: $background-color;
 
-                    &__user-name-container {
+                    &__name-surnameInfoContainer {
                         width: 100%;
                         height: 20%;
-                        background-color: red;
-
-                        &__nameLabel{}
+                        @include flex_display(none, none);
                     }
 
                     &__userEmailContainer {
                         width: 100%;
                         height: 20%;
-                        background-color: coral;
                     }
 
                     &__userOrderContainer {
@@ -186,4 +183,23 @@
 
 .inactive {
     color: rgb(163, 163, 163);
+}
+
+.infoContainer {
+    width: auto;
+    height: 100%;
+    @include flex_display($ai: flex-start, $dir: column);
+
+    & > * {
+        margin-left: 30px;
+    }
+
+    &--label {
+        font-size: 15px;
+    }
+
+    &--info {
+        margin-top: 10px;
+        font-size: 30px;
+    }
 }
