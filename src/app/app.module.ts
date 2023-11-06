@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,22 @@ import { FormsModule } from '@angular/forms';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { OrderConfirmModalComponent } from './components/order-confirm-modal/order-confirm-modal.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+
+// function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
+//   return () =>
+//     keycloak.init({
+//       config: {
+//         url: 'http://localhost:8080',
+//         realm: 'TechStore',
+//         clientId: 'angular-client',
+//       },
+//       initOptions: {
+//         checkLoginIframe: true,
+//         checkLoginIframeInterval: 25
+//       }
+//     });
+// }
 
 @NgModule({
   declarations: [
@@ -32,9 +48,17 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    KeycloakAngularModule
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializeKeycloak,
+    //   multi: true,
+    //   deps: [KeycloakService],
+    // },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
