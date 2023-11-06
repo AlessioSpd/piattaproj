@@ -8,7 +8,7 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { AuthGuard } from './utility/app.guard';
 
 const routes: Routes = [
-  { path:'', component: LandingPageComponent },
+  { path: '', component: LandingPageComponent },
   { path:'search', component: SearchPageComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard]},
   { path: 'cart', component: CartPageComponent} ,

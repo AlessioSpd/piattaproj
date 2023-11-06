@@ -20,7 +20,7 @@ export class AuthGuard extends KeycloakAuthGuard {
   public async isAccessAllowed(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Promise <boolean> {
+  ): Promise<boolean>{
     // Force the user to log in if currently unauthenticated.
     if (!this.authenticated) {
       await this.keycloak.login({
@@ -32,7 +32,7 @@ export class AuthGuard extends KeycloakAuthGuard {
     const requiredRoles = route.data['roles'];
 
     // Allow the user to proceed if no additional roles are required to access the route.
-    if (!Array.isArray(requiredRoles) || requiredRoles.length === 0) {
+    if (!(requiredRoles instanceof Array) || requiredRoles.length === 0) {
       return true;
     }
 

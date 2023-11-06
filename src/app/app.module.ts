@@ -15,21 +15,21 @@ import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { OrderConfirmModalComponent } from './components/order-confirm-modal/order-confirm-modal.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
-// function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
-//   return () =>
-//     keycloak.init({
-//       config: {
-//         url: 'http://localhost:8080',
-//         realm: 'TechStore',
-//         clientId: 'angular-client',
-//       },
-//       initOptions: {
-//         checkLoginIframe: true,
-//         checkLoginIframeInterval: 25
-//       }
-//     });
-// }
+function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8080',
+        realm: 'TechStore',
+        clientId: 'angular-client',
+      },
+      initOptions: {
+        checkLoginIframe: true,
+      }
+    });
+}
 
 @NgModule({
   declarations: [
@@ -49,15 +49,21 @@ import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+          allowedUrls: ['http://localhost:8081/'],
+          sendAccessToken: true
+      }
+  })
   ],
   providers: [
-    // {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: initializeKeycloak,
-    //   multi: true,
-    //   deps: [KeycloakService],
-    // },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
   ],
   bootstrap: [AppComponent]
 })
