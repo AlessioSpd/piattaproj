@@ -5,6 +5,7 @@
         <div class="adminPageContainer__topBar__tabMenu">
             <div class="adminPageContainer__topBar__tabMenu__tabMenuItem"
                 *ngFor="let item of tabMenu; index as i"
+                
                 [ngClass]="{'active': item.active, 'inactive': !item.active}"
                 (click)="setActive(i)"
             >{{item.label}}</div>
@@ -55,8 +56,26 @@
                             </div>
                         </div>
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer">
-                            <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemListPanel"></div>
-                            <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemListPanel__item"></div>
+                            <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable">
+                                
+                                <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__tableHeader">
+                                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__tableHeader__column">Order id</div>
+                                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__tableHeader__column"># of product</div>
+                                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__tableHeader__column">Total</div>
+                                </div>
+
+                                <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer">
+                                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item"
+                                        [ngStyle]="{'background-color':tableBackground[i%2]}"
+                                        *ngFor="let item of orderTestItem; index as i"
+                                        (click)="openOrderDetail(i)"
+                                    >
+                                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item--orderId">{{item.id}}</div>
+                                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item--nProducts">{{item.nProd}}</div>
+                                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item--totalPrice">${{item.price}}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,3 +84,5 @@
         <div class="adminPageContainer__contentPanelContainer__contentPanel" *ngSwitchCase="'Prodotti'">prodotti</div>
     </div>
 </div>
+
+<app-order-details-modal></app-order-details-modal>

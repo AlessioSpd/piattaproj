@@ -18,6 +18,7 @@ import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 import { initializer } from '../app/init/app-init';
+import { OrderDetailsModalComponent } from './components/order-details-modal/order-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { initializer } from '../app/init/app-init';
     CartPageComponent,
     OrderConfirmModalComponent,
     AdminPageComponent,
+    OrderDetailsModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,12 +48,12 @@ import { initializer } from '../app/init/app-init';
   })
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializer,
-      multi: true,
-      deps: [KeycloakService],
-    },
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: initializer,
+    //   multi: true,
+    //   deps: [KeycloakService],
+    // },
   ],
   bootstrap: [AppComponent]
 })

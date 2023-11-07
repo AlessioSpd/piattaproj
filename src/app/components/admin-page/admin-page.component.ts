@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { OrderDetailsModalComponent } from '../order-details-modal/order-details-modal.component';
 
 @Component({
   selector: 'app-admin-page',
@@ -6,8 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-page.component.scss']
 })
 export class AdminPageComponent {
+
+  @ViewChild(OrderDetailsModalComponent) orderDetailModal!: OrderDetailsModalComponent;
+
   lastActive: string = 'Utenti';
   userDetailsFlag: boolean = true;
+
+  tableBackground = ['#F5F5F5', 'white'];
   
   tabMenu = [
     { label: "Utenti", active: true },
@@ -23,6 +29,15 @@ export class AdminPageComponent {
     "pamuimc@gmail.com",
   ]
 
+  orderTestItem = [
+    {id: 1, nProd: 123, price: 555},
+    {id: 2, nProd: 30573985, price: 8595},
+    {id: 3, nProd: 30573985, price: 8595},
+    {id: 4, nProd: 30573985, price: 8595},
+    {id: 5, nProd: 30573985, price: 8595},
+    {id: 6, nProd: 30573985, price: 8595},
+  ]
+
   setActive(index: number) {
     this.tabMenu.map(item => {
       item.active = false;
@@ -34,5 +49,10 @@ export class AdminPageComponent {
 
   openUserDetail(index: number) {
     this.userDetailsFlag = !this.userDetailsFlag;
+  }
+
+  openOrderDetail(index: number) {
+    console.log('cliccato');
+    this.orderDetailModal.closeOpenModal()
   }
 }

@@ -8,11 +8,16 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { AuthGuard } from './utility/app.guard';
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent, canActivate: [AuthGuard], data: { roles: ['user'] }},
-  { path:'search', component: SearchPageComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
-  { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
-  { path: 'cart', component: CartPageComponent, canActivate: [AuthGuard], data: { roles: ['user'] } } ,
-  { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } }
+  // { path: '', component: LandingPageComponent, canActivate: [AuthGuard], data: { roles: ['user'] }},
+  // { path:'search', component: SearchPageComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
+  // { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
+  // { path: 'cart', component: CartPageComponent, canActivate: [AuthGuard], data: { roles: ['user'] } } ,
+  // { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } }
+  { path: '', component: LandingPageComponent },
+  { path:'search', component: SearchPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'cart', component: CartPageComponent },
+  { path: 'admin', component: AdminPageComponent  }
 ];
 
 @NgModule({
