@@ -17,19 +17,7 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
-function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
-  return () =>
-    keycloak.init({
-      config: {
-        url: 'http://localhost:8080',
-        realm: 'TechStore',
-        clientId: 'angular-client',
-      },
-      initOptions: {
-        checkLoginIframe: true,
-      }
-    });
-}
+import { initializer } from '../app/init/app-init';
 
 @NgModule({
   declarations: [
@@ -60,7 +48,7 @@ function initializeKeycloak(keycloak: KeycloakService): () => Promise<boolean> {
   providers: [
     {
       provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
+      useFactory: initializer,
       multi: true,
       deps: [KeycloakService],
     },
