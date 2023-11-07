@@ -13,27 +13,76 @@
 
     &__modalPanel {
         background-color: $background-color;
-        width: 80%;
-        height: 80%;
+        width: 60%;
+        height: 60%;
         border-radius: 15px;
-        @include flex_display();
+        @include flex_display(none, none, column);
         box-shadow: 5px 5px grey;
 
-        &--successLabel {
+        &__modalHeader {
+            width: 100%;
+            height: 45px;
+            @include flex_display(space-between);
+            border-bottom: solid 1px rgb(218, 218, 218);
             font-size: 25px;
-            color: rgb(0, 153, 0);
+            font-weight: 300;
+            padding-top: 5px;
+
+            &--label {
+                padding-left: 15px;
+            }
+
+            &--closeIcon {
+                padding-right: 45px;
+                width: 20px;
+                height: 20px;
+                @include image_background('../../../assets/icons/x-mark.png', contain);
+                opacity: 40%;
+                cursor: pointer;
+            }
         }
 
-        &--icon {
-            width: 30px;
-            height: 30px;
-            // background-color: red;
-            background-image: url('../../../assets/icons/check.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            @include image_background()
+        &__tableHeader {
+            width: 100%;
+            height: 45px;
+            background-color: $background-panel-color;
+            @include flex_display(none, none);
+            
+            &__column {
+                height: 100%;
+                flex: 1;
+                @include flex_display(flex-start);
+                padding-left: 20px;
+            }
+        }
+        
+        &__itemListContainer {
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            &__item {
+                width: 100%;
+                height: 45px;
+                background-color: $background-color;
+                @include flex_display(none, none);
+            }
         }
 
+        &__tableFooter {
+            width: 100%;
+            height: 45px;
+            border-radius: 0px 0px 15px 15px;
+            @include flex_display(flex-end);
+
+            &__column {
+                padding-right: 30px;
+            }
+        }
     }
 }

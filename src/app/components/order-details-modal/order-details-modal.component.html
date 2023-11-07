@@ -1,6 +1,27 @@
 <div class="modalContainer" [ngStyle]="{'display': openBoolean ? 'flex' : 'none'}">
     <div class="modalContainer__modalPanel">
-        <div class="modalContainer__modalPanel--successLabel">Successful</div>
-        <div class="modalContainer__modalPanel--icon"></div>
+        <div class="modalContainer__modalPanel__modalHeader">
+            <div class="modalContainer__modalPanel__modalHeader--label">Order details</div>
+            <div class="modalContainer__modalPanel__modalHeader--closeIcon" (click)="closeOpenModal()"></div>
+        </div>
+        <div class="modalContainer__modalPanel__tableHeader">
+            <div class="modalContainer__modalPanel__tableHeader__column">Id</div>
+            <div class="modalContainer__modalPanel__tableHeader__column">Marca</div>
+            <div class="modalContainer__modalPanel__tableHeader__column">Nome</div>
+            <div class="modalContainer__modalPanel__tableHeader__column">Prezzo</div>
+            <div class="modalContainer__modalPanel__tableHeader__column">Quantità</div> 
+        </div>
+        <div class="modalContainer__modalPanel__itemListContainer">
+            <div class="modalContainer__modalPanel__itemListContainer__item" [ngStyle]="{'background-color':tableBackground[i%2]}" *ngFor="let item of orderTestItem; index as i;">
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.id}}</div>
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.marca}}</div>
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.nome}}</div>
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.price}}</div>
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.quant}}</div>
+            </div>
+        </div>
+        <div class="modalContainer__modalPanel__tableFooter">
+            <div class="modalContainer__modalPanel__tableFooter__column">Total: ${{tot}}</div>
+        </div>
     </div>
 </div>

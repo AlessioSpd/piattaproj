@@ -10,8 +10,8 @@ export class AdminPageComponent {
 
   @ViewChild(OrderDetailsModalComponent) orderDetailModal!: OrderDetailsModalComponent;
 
-  lastActive: string = 'Prodotti';
-  userDetailsFlag: boolean = true;
+  lastActive: string = 'Utenti';
+  userDetailsFlag: boolean = false;
 
   tableBackground = ['#F5F5F5', 'white'];
   
@@ -28,7 +28,7 @@ export class AdminPageComponent {
     "alessiospadafora.work@gmail.com",
     "pamuimc@gmail.com",
   ]
-
+  
   orderTestItem = [
     {id: 1, nProd: 123, price: 555},
     {id: 2, nProd: 30573985, price: 8595},
