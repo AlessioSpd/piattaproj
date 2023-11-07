@@ -10,7 +10,7 @@ export class AdminPageComponent {
 
   @ViewChild(OrderDetailsModalComponent) orderDetailModal!: OrderDetailsModalComponent;
 
-  lastActive: string = 'Utenti';
+  lastActive: string = 'Prodotti';
   userDetailsFlag: boolean = true;
 
   tableBackground = ['#F5F5F5', 'white'];
@@ -36,6 +36,13 @@ export class AdminPageComponent {
     {id: 4, nProd: 30573985, price: 8595},
     {id: 5, nProd: 30573985, price: 8595},
     {id: 6, nProd: 30573985, price: 8595},
+  ]
+
+  productTestItem = [
+    {marca: 'Apple', nome: 'Iphone', quant: 10, prezzo: 100},
+    {marca: 'Apple', nome: 'Iphone', quant: 0, prezzo: 100},
+    {marca: 'Apple', nome: 'Iphone', quant: 10, prezzo: 100},
+    {marca: 'Apple', nome: 'Iphone', quant: 0, prezzo: 100},
   ]
 
   setActive(index: number) {

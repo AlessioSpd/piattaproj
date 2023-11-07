@@ -81,7 +81,34 @@
                 </div>
             </div>
         </div>
-        <div class="adminPageContainer__contentPanelContainer__contentPanel" *ngSwitchCase="'Prodotti'">prodotti</div>
+
+        <div class="adminPageContainer__contentPanelContainer__contentPanel" *ngSwitchCase="'Prodotti'">
+            <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel">
+                <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__searchBar">
+                    <input type="text" [placeholder]="'Search product...'">
+                </div>
+                <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer">
+
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard" *ngFor="let item of productTestItem; index as i">
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard--brandName">{{item.marca}}</div>
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productNameRank">
+                            <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productNameRank--name">{{item.nome}}</div>
+                        </div>
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard--productImage"></div>
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productInfo">
+                            <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productInfo__availability"
+                                [ngStyle]="{'color': item.quant > 0 ? 'rgb(36, 204, 36)' : 'grey'}"
+                            >
+                                {{item.quant > 0 ? "Available" : "Not Available"}}
+                            </div>
+                            <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productInfo--price">€1000</div>
+                        </div>
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__modifyButton">Edit</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
