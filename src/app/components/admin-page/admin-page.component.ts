@@ -28,7 +28,7 @@ export class AdminPageComponent {
     "alessiospadafora.work@gmail.com",
     "pamuimc@gmail.com",
   ]
-  
+
   orderTestItem = [
     {id: 1, nProd: 123, price: 555},
     {id: 2, nProd: 30573985, price: 8595},
@@ -61,5 +61,9 @@ export class AdminPageComponent {
   openOrderDetail(index: number) {
     console.log('cliccato');
     this.orderDetailModal.closeOpenModal()
+  }
+
+  deleteUser(index: number) {
+    this.userTestItem.splice(index, 1);
   }
 }

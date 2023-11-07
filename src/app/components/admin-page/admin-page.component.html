@@ -22,9 +22,9 @@
                     <input type="text" [placeholder]="'Search user...'">
                 </div>
                 <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer">
-                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item" (click)="openUserDetail(i)" *ngFor="let item of userTestItem; index as i">
-                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--userMail">{{item}}</div>
-                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--deleteIcon"></div>
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item" *ngFor="let item of userTestItem; index as i">
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--userMail" (click)="openUserDetail(i)">{{item}}</div>
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--deleteIcon" (click)="deleteUser(i)"></div>
                     </div>
                 </div>
             </div>

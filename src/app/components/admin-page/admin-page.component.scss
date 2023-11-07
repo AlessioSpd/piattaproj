@@ -112,7 +112,6 @@
                         background-color: $background-panel-color;
                         border-radius: 10px;
                         @include flex_display(space-between);
-                        cursor: pointer;
 
                         &:nth-child(1) {
                             margin-top: 10px;
@@ -120,6 +119,9 @@
                         
                         &--userMail {
                             margin-left: 10px;
+                            height: 100%;
+                            @include flex_display();
+                            cursor: pointer;
                         }
 
                         &--deleteIcon {
