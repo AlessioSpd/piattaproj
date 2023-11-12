@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-page-header',
@@ -11,14 +12,15 @@ export class PageHeaderComponent implements OnInit {
   cartBadge: number = 0;
   currentPath: string = '';
   @Input() mood: string = "user";
+  logged: boolean = false;
 
   @Output() searchInputValueEmitter = new EventEmitter<string>();
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private auth: AuthenticationService){}
   
   ngOnInit(): void {
    this.currentPath = this.router.url.replace('/','');
-   //chiamata che fa la get del numero di prodotti all'interno del carrello e modifica il badge
+   this.logged = this.auth.isLogged();
   }
 
   inputValue: string = '';

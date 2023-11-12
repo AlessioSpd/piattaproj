@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../const/environment';
+import { AuthenticationService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -17,11 +17,8 @@ export class LandingPageComponent implements OnInit {
     { path: '../../../assets/icons/contact-mail.png', text: 'sebsjbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb' }
   ]
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   ngOnInit(): void {
-    // this.http.get(`${environment.serverUrl}/demo`).subscribe((data: any) => {
-    //   this.message = data.message;
-    // });
   }
 }

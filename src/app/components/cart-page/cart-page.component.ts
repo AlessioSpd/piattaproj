@@ -29,6 +29,8 @@ export class CartPageComponent{
 
   modifyQuantity(index: number, sign: number) {
     this.testItem[index].quantita = this.testItem[index].quantita + sign;
+    
+    if(this.testItem[index].quantita == 0) this.testItem.splice(index, 1)
   }
 
   clearCart() {

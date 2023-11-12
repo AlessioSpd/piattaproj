@@ -34,7 +34,7 @@
     </div>
     <div class="navBar__cartButtonContainer">
         <div class="navBar__cartButtonContainer--icon" (click)="changePage('cart')">
-            <div class="navBar__cartButtonContainer--icon--badge">{{cartBadge}}</div>
+            <div class="navBar__cartButtonContainer--icon--badge" *ngIf="logged">{{cartBadge}}</div>
         </div>
     </div>
 </div>

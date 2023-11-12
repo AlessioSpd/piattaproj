@@ -66,7 +66,9 @@
                 transition: all .2s;
                 box-shadow: -5px 5px 1px rgb(190, 190, 190), 5px 5px 1px rgb(216, 216, 216);
                 color: #b9b9b9;
-
+                outline: none;
+                border: 0px;
+                
                 &:active {
                     background-color: rgb(219, 219, 219);
                     color: black;
@@ -76,4 +78,11 @@
             }
         }
     }
+}
+
+.test {
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background-color: coral;
 }

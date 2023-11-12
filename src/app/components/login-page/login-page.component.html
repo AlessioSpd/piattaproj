@@ -2,14 +2,20 @@
     <div class="mainContainer__loginPanel">
         <div class="mainContainer__loginPanel__icon"></div>
         <div class="mainContainer__loginPanel__label">Log in</div>
-        <div class="mainContainer__loginPanel__loginInputContainer">
-            <div class="mainContainer__loginPanel__loginInputContainer__inputContainer">
-                <input class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Email...">
+        <form class="mainContainer__loginPanel__loginInputContainer" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="mainContainer__loginPanel__loginInputContainer__inputContainer" *ngIf="type">
+                <input class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Nome..." formControlName="nome">
+            </div>
+            <div class="mainContainer__loginPanel__loginInputContainer__inputContainer" *ngIf="type">
+                <input class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Cognome..." formControlName="cognome">
             </div>
             <div class="mainContainer__loginPanel__loginInputContainer__inputContainer">
-                <input class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Password...">
+                <input class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Email..." formControlName="email">
             </div>
-            <div class="mainContainer__loginPanel__loginInputContainer__submitButton">Access</div>
-        </div>
+            <div class="mainContainer__loginPanel__loginInputContainer__inputContainer">
+                <input class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Password..." formControlName="password">
+            </div>
+            <button type="submit"  class="mainContainer__loginPanel__loginInputContainer__submitButton">Access</button>
+        </form>
     </div>
 </div>
