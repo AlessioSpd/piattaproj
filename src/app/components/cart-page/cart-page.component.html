@@ -2,29 +2,29 @@
     <app-page-header></app-page-header>
     <div class="pageContainer__header">Carrello</div>
     <div class="pageContainer__itemList">
-        <div class="pageContainer__itemList__item" *ngFor="let item of testItem; index as i">
+        <div class="pageContainer__itemList__item" *ngFor="let item of cartItemList; index as i">
             <div class="pageContainer__itemList__item__productInfo">
                 <div class="pageContainer__itemList__item__productInfo--icon"></div>
                 <div class="pageContainer__itemList__item__productInfo__nameBrand">
-                    <div class="pageContainer__itemList__item__productInfo__nameBrand--name">{{item.name}}</div>
-                    <div class="pageContainer__itemList__item__productInfo__nameBrand--brand">{{item.brand}}</div>
+                    <div class="pageContainer__itemList__item__productInfo__nameBrand--name">{{item.prodotto.nome}}</div>
+                    <div class="pageContainer__itemList__item__productInfo__nameBrand--brand">{{item.prodotto.marca}}</div>
                 </div>
                 <div class="pageContainer__itemList__item__productInfo__unitPrice">
-                    <div class="pageContainer__itemList__item__productInfo__unitPrice--label">Prz. unit. : ${{item.prezzo}}</div>
+                    <div class="pageContainer__itemList__item__productInfo__unitPrice--label">Prz. unit. : ${{item.prodotto.prezzo}}</div>
                 </div>
             </div>
             <div class="pageContainer__itemList__item__orderInfo">
                 <div class="pageContainer__itemList__item__orderInfo__quantity">
-                    <div class="pageContainer__itemList__item__orderInfo__quantity--plusButton quantityButton" (click)="modifyQuantity(i, 1)"></div>
+                    <div class="pageContainer__itemList__item__orderInfo__quantity--plusButton quantityButton" (click)="modifyQuantity(item, +1)"></div>
                     <div class="pageContainer__itemList__item__orderInfo__quantity--label">Qt : {{item.quantita}}</div>
-                    <div class="pageContainer__itemList__item__orderInfo__quantity--minusButton quantityButton" (click)="modifyQuantity(i, -1)"></div>
+                    <div class="pageContainer__itemList__item__orderInfo__quantity--minusButton quantityButton" (click)="modifyQuantity(item, -1)"></div>
                 </div>
                 <div class="pageContainer__itemList__item__orderInfo__price">Prezzo: ${{item.quantita*item.prezzo}}</div>
             </div>
         </div>
         <div class="pageContainer__itemList__footer">
-            <div class="pageContainer__itemList__footer__confirmButton cartControlButton" [ngClass]="{'disableButton': testItem.length == 0}" (click)="confirmOrder66()">Conferma ordine</div>
-            <div class="pageContainer__itemList__footer__clearCartButton cartControlButton" (click)="clearCart()" [ngClass]="{'disableButton': testItem.length == 0}">Svuota carrello</div>
+            <div class="pageContainer__itemList__footer__confirmButton cartControlButton" [ngClass]="{'disableButton': cartItemList.length == 0}" (click)="confirmOrder66()">Conferma ordine</div>
+            <div class="pageContainer__itemList__footer__clearCartButton cartControlButton" (click)="clearCart()" [ngClass]="{'disableButton': cartItemList.length == 0}">Svuota carrello</div>
             <div class="pageContainer__itemList__footer__priceLabel">Totale: ${{calcTot()}}</div>
         </div>
     </div>

@@ -3,7 +3,6 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { IUser } from '../models/IUser';
 import {Md5} from 'ts-md5';
 import { API_PATH } from '../const/const';
-import { tap } from 'rxjs';
 
 
 @Injectable({
@@ -41,4 +40,9 @@ export class AuthenticationService {
   }
 
   isLogged() { return this.logged; }
+  
+  getLoggedEmail() {
+    if(this.isLogged()) return this.loggedMail;
+    else return '';
+  }
 }

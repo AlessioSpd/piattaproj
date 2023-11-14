@@ -79,8 +79,8 @@
                 margin-right: 30px;
                 display: flex;
                 flex-direction: column;
-                justify-self: end;
-                align-items: end;
+                justify-self: flex-end;
+                align-items: flex-end;
             
 
                 &__quantity {

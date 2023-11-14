@@ -59,6 +59,7 @@
                 height: 30px !important;
                 align-self: flex-end;
                 @include image_background('../../../assets/icons/x-mark.png', contain);
+                cursor: pointer;
             }
 
             &__titleContainer {
@@ -116,7 +117,7 @@
                     width: 100%;
                     height: 40px;
                     @include flex_display();
-                    
+                    user-select: none;
                     border: solid 1px transparent;
                     border-radius: 5px;
                     font-size: 20px;

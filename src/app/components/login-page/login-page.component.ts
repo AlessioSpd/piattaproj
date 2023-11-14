@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/auth-service.service';
 })
 export class LoginPageComponent implements OnInit{
   
-  type: boolean = false;
+  loginType: boolean = false;
 
   registrationForm!: FormGroup;
 
@@ -36,10 +36,11 @@ export class LoginPageComponent implements OnInit{
         email: this.registrationForm.value.email,
         role: false
       }
-      if(this.type) {
+      if(this.loginType) {
         console.log("registro")
         this.authServ.userRegistration(user).subscribe(res => {
           if(res) this.authServ.login(user.email);
+          this.router.navigate(['/']);
 
         });
       } else {
@@ -58,6 +59,15 @@ export class LoginPageComponent implements OnInit{
         }
       });
     }
+  }
+
+  changeModeLogin() {
+    this.loginType = !this.loginType;
+    console.log(this.registrationForm.controls['password'].invalid)
+  }
+
+  test() {
+    console.log(this.registrationForm.controls['password'].invalid)
   }
 
 }

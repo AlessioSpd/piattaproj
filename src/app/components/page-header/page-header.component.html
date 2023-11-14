@@ -28,12 +28,16 @@
             ></div>
         </div>
     </div>
-    <div class="navBar__loginSectionContainer" (click)="changePage('login')">
+    <div class="navBar__loginSectionContainer" (click)="changePage('login')" *ngIf="!logged">
         <div class="navBar__loginSectionContainer--icon"></div>
         <div class="navBar__loginSectionContainer--label">Log in / Sign Up</div>
     </div>
+    <div class="navBar__loginSectionContainer" (click)="logOut()" *ngIf="logged">
+        <div class="navBar__loginSectionContainer--icon"></div>
+        <div class="navBar__loginSectionContainer--label">Logout</div>
+    </div>
     <div class="navBar__cartButtonContainer">
-        <div class="navBar__cartButtonContainer--icon" (click)="changePage('cart')">
+        <div class="navBar__cartButtonContainer--icon" (click)="changePage('check')">
             <div class="navBar__cartButtonContainer--icon--badge" *ngIf="logged">{{cartBadge}}</div>
         </div>
     </div>

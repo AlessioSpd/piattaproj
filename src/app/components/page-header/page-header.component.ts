@@ -19,8 +19,8 @@ export class PageHeaderComponent implements OnInit {
   constructor(private router: Router, private auth: AuthenticationService){}
   
   ngOnInit(): void {
-   this.currentPath = this.router.url.replace('/','');
-   this.logged = this.auth.isLogged();
+    this.currentPath = this.router.url.replace('/','');
+    this.logged = this.auth.isLogged();
   }
 
   inputValue: string = '';
@@ -30,10 +30,18 @@ export class PageHeaderComponent implements OnInit {
   }
   
   changePage(path: string){
-    if(path == this.currentPath) return;
-
-    this.router.navigate(['/' + path]);
-    console.log('cambio')
+    if(path == 'check') {
+      if( this.auth.isLogged() ) {
+        this.router.navigate(['/cart']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+    } else {
+      this.router.navigate(['/' + path]);
+    }
   }
 
+  logOut() {
+    console.log('ciao ciao')
+  }
 }

@@ -15,8 +15,7 @@
             <div class="modalContainer__modalPanel__itemDescriptionContainer__descriptionArea">{{selectedItem.descrizione}}</div>
             <div class="modalContainer__modalPanel__itemDescriptionContainer__itemPrice">${{selectedItem.prezzo}}</div>
             <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer">
-                <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer--button">Add to Cart</div>
-                <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer--button">Add to Wishlist</div>
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer--button" (click)="addItemToCart(selectedItem.codice)">Add to Cart</div>
             </div>
         </div>
     </div>
