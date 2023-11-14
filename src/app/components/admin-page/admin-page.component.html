@@ -1,6 +1,4 @@
 <div class="adminPageContainer">
-    <app-page-header [mood]="'admin'"></app-page-header>
-
     <div class="adminPageContainer__topBar">
         <div class="adminPageContainer__topBar__tabMenu">
             <div class="adminPageContainer__topBar__tabMenu__tabMenuItem"
@@ -18,13 +16,10 @@
     <div class="adminPageContainer__contentPanelContainer" [ngSwitch]="lastActive">
         <div class="adminPageContainer__contentPanelContainer__contentPanel" *ngSwitchCase="'Utenti'">
             <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer">
-                <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__searchBarContainer">
-                    <input type="text" [placeholder]="'Search user...'">
-                </div>
                 <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer">
-                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item" *ngFor="let item of userTestItem; index as i">
-                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--userMail" (click)="openUserDetail(i)">{{item}}</div>
-                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--deleteIcon" (click)="deleteUser(i)"></div>
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item" *ngFor="let item of userList; index as i">
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--userMail" (click)="openUserDetail(item)">{{item.email}}</div>
+                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userListContainer__itemListContainer__item--deleteIcon" (click)="deleteUser(item)"></div>
                     </div>
                 </div>
             </div>
@@ -34,27 +29,22 @@
                     <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__name-surnameInfoContainer">
                         <div class="infoContainer">
                             <div class="infoContainer--label">Nome:</div>
-                            <div class="infoContainer--info">Alessio</div>
+                            <div class="infoContainer--info">{{selectedUser.nome}}</div>
                         </div>
                         <div class="infoContainer">
                             <div class="infoContainer--label">Cognome:</div>
-                            <div class="infoContainer--info">Spadafora</div>
+                            <div class="infoContainer--info">{{selectedUser.cognome}}</div>
                         </div>
                     </div>
 
                     <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userEmailContainer">
                         <div class="infoContainer">
                             <div class="infoContainer--label">Email:</div>
-                            <div class="infoContainer--info">alessiospadafora.main@gmail.com</div>
+                            <div class="infoContainer--info">{{selectedUser.email}}</div>
                         </div>
                     </div>
 
                     <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer">
-                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__searchInputContainer">
-                            <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__searchInputContainer__inputContainer">
-                                <input type="text" [placeholder]="'Search order...'">
-                            </div>
-                        </div>
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer">
                             <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable">
                                 
@@ -67,12 +57,12 @@
                                 <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer">
                                     <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item"
                                         [ngStyle]="{'background-color':tableBackground[i%2]}"
-                                        *ngFor="let item of orderTestItem; index as i"
-                                        (click)="openOrderDetail(i)"
+                                        *ngFor="let item of userOrderList; index as i"
+                                        (click)="openOrderDetail(item, item.total_price)"
                                     >
                                         <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item--orderId">{{item.id}}</div>
-                                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item--nProducts">{{item.nProd}}</div>
-                                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item--totalPrice">${{item.price}}</div>
+                                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item--nProducts">{{item.carrello.length}}</div>
+                                        <div class="adminPageContainer__contentPanelContainer__contentPanel__userDetailContainer__userDetailPanel__userOrderContainer__itemListContainer__itemTable__orderListContainer__item--totalPrice">${{item.total_price}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -85,11 +75,11 @@
         <div class="adminPageContainer__contentPanelContainer__contentPanel" *ngSwitchCase="'Prodotti'">
             <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel">
                 <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__searchBar">
-                    <input type="text" [placeholder]="'Search product...'">
+                    <input type="text" [placeholder]="'Search product...'" [ngModel]="inputValue" (ngModelChange)="inputChange($event)">
                 </div>
                 <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer">
 
-                    <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard" *ngFor="let item of productTestItem; index as i">
+                    <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard" *ngFor="let item of productList; index as i">
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard--brandName">{{item.marca}}</div>
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productNameRank">
                             <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productNameRank--name">{{item.nome}}</div>
@@ -97,9 +87,9 @@
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard--productImage"></div>
                         <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productInfo">
                             <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productInfo__availability"
-                                [ngStyle]="{'color': item.quant > 0 ? 'rgb(36, 204, 36)' : 'grey'}"
+                                [ngStyle]="{'color': item.quantita > 0 ? 'rgb(36, 204, 36)' : 'grey'}"
                             >
-                                {{item.quant > 0 ? "Available" : "Not Available"}}
+                                {{item.quantita > 0 ? "Available" : "Not Available"}}
                             </div>
                             <div class="adminPageContainer__contentPanelContainer__contentPanel__managerProductsPanel__productListContainer__productCard__productInfo--price">€1000</div>
                         </div>
@@ -112,4 +102,4 @@
     </div>
 </div>
 
-<app-order-details-modal></app-order-details-modal>
+<app-order-details-modal [productListOfOrder]="productListOfOrder" [totalPrice]="selectedOrderTotalPrice"></app-order-details-modal>

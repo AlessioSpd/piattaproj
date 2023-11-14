@@ -20,10 +20,10 @@ export class LoginPageComponent implements OnInit{
   
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['admin@admin', [Validators.required, Validators.email]],
       nome: ['', []],
       cognome: ['', []],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['adminadmin', [Validators.required, Validators.minLength(8)]]
     });
   }
 
@@ -37,16 +37,24 @@ export class LoginPageComponent implements OnInit{
         role: false
       }
       if(this.loginType) {
-        console.log("registro")
+        //registro
         this.authServ.userRegistration(user).subscribe(res => {
           if(res) this.authServ.login(user.email);
           this.router.navigate(['/']);
 
         });
       } else {
+        //loggo
         this.authServ.checkUser(user).subscribe(res => {
-          if(res) this.authServ.login(user.email);
-          this.router.navigate(['/']);
+          if(res) {
+            if(res.role) {
+              this.authServ.loginAdmin(res.email);
+              this.router.navigate(['/admin']);
+            }else {
+              this.authServ.login(res.email);
+              this.router.navigate(['/']);
+            }
+          }
         });
       }
 

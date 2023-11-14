@@ -4,6 +4,7 @@ import { CartService } from 'src/app/services/cart-service.service';
 import { AuthenticationService } from 'src/app/services/auth-service.service';
 import { IProdotto } from 'src/app/models/IProdotto';
 import { IProdottoCarrello } from 'src/app/models/IProdottoCarrello';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -18,7 +19,7 @@ export class CartPageComponent implements OnInit{
   
   cartItemList!: Array<IProdottoCarrello>;
   
-  constructor(private cartServ: CartService, private auth: AuthenticationService) {}
+  constructor(private route: Router, private cartServ: CartService, private auth: AuthenticationService) {}
 
   ngOnInit(): void {
     let email = this.auth.getLoggedEmail();
@@ -28,8 +29,9 @@ export class CartPageComponent implements OnInit{
         this.cartItemList = res;
         console.log(res);
       })
+    } else {
+      this.route.navigate(['/login']);
     }
-    else console.log('bro ci sta qualche problema')
   }
 
   calcTot() {

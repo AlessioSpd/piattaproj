@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IProdotto } from 'src/app/models/IProdotto';
+import { IProdottoCarrello } from 'src/app/models/IProdottoCarrello';
+import { IUser } from 'src/app/models/IUser';
 
 @Component({
   selector: 'app-order-details-modal',
@@ -8,31 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class OrderDetailsModalComponent implements OnInit {
 
   tableBackground = ['#F5F5F5', 'white'];
-  
-  orderTestItem = [
-    {id: 1, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 2, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 3, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 4, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 5, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 6, marca: 'Samsung', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 4, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 5, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 6, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 4, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 5, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-    {id: 6, marca: 'Apple', nome: 'Iphone', price: 125143, quant: 124},
-  ]
-  
-  tot: number = 0;
+
+  @Input() productListOfOrder: Array<IProdottoCarrello> = [];
+  @Input() totalPrice: number = 0;
   
   openBoolean: Boolean = false;
   
-  ngOnInit(): void {
-    this.orderTestItem.map(item => {
-      this.tot = this.tot + (item.quant*item.price);
-    })
-  }
+  ngOnInit(): void {}
 
   closeOpenModal() {
     this.openBoolean = !this.openBoolean;

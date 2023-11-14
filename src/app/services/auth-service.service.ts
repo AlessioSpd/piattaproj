@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { IUser } from '../models/IUser';
-import {Md5} from 'ts-md5';
+import { Md5 } from 'ts-md5';
 import { API_PATH } from '../const/const';
 
 
@@ -9,23 +9,19 @@ import { API_PATH } from '../const/const';
   providedIn: 'root'
 })
 export class AuthenticationService {
-
-  md5!: Md5;
   logged: boolean = false;
-  loggedMail: string = ''
+  loggedMail: string = '';
+  adminMail: string = '';
 
-  constructor(private http: HttpClient) {
-    this.md5 = new Md5();
-  }
+  constructor(private http: HttpClient) {}
 
   checkUser(user: IUser) {
-    user.nome = 'ale';
-    user.cognome = 'spa';
-    return this.http.post<boolean>(API_PATH + "/users/checkUser", user);
+    return this.http.post<IUser>(API_PATH + "/users/checkUser", user);
   }
 
   userRegistration(user: IUser) {
     console.log("registro dentro")
+    user.password = Md5.hashStr(user.password);
     return this.http.post<IUser>(API_PATH + "/users/registra_user", user);
   }
 
@@ -34,7 +30,7 @@ export class AuthenticationService {
     this.logged = true;
   }
 
-  logout(email: string) {
+  logout() {
     this.loggedMail = '';
     this.logged = false;
   }
@@ -44,5 +40,14 @@ export class AuthenticationService {
   getLoggedEmail() {
     if(this.isLogged()) return this.loggedMail;
     else return '';
+  }
+
+  loginAdmin(email: string) {
+    this.adminMail = email ;
+    this.logged = true;
+  }
+
+  isAdminLogged(): boolean {
+    return this.adminMail == ''
   }
 }

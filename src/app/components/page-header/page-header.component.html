@@ -2,9 +2,9 @@
 <div class="topBar">
     <div class="topBar__title">
         <div class="topBar__title--icon" (click)="changePage('')"></div>
-        <div class="topBar__title--label">Il migliore sito online per dildi tech</div>
+        <div class="topBar__title--label">Il migliore sito online per il tech</div>
     </div>
-    <div class="topBar__options" *ngIf="mood=='user'">
+    <div class="topBar__options">
         <div class="topBar__options__phone">
             <div class="topBar__options__phone--icon"></div>
             <div class="topBar__options__phone--label">1231232123</div>
@@ -20,7 +20,7 @@
     <div class="navBar__searchBarContainer">
         <div class="navBar__searchBarContainer__searchBar">
             <div class="navBar__searchBarContainer__searchBar__inputContainer">
-                <input type="text" [placeholder]="'Search something...'" [ngModel]="inputValue" (ngModelChange)="inputChange($event)">
+                <input *ngIf="!(currentPath === '')" type="text" [placeholder]="'Search something...'" [ngModel]="inputValue" (ngModelChange)="inputChange($event)">
             </div>
             <div class="navBar__searchBarContainer__searchBar__searchIcon"
                 (click)="changePage('search')"

@@ -29,4 +29,8 @@ export class CartService {
     removeItemFromCart(codice: number, email: string) {
         return this.http.delete(this.path + '/elimina_prodotto', {params: {'id': codice, 'email': email}});
     }
+
+    getNProdotti(email: string) {
+        return this.http.get<number>(this.path + '/nProdotti', {params: {'email': email}})
+    }
 }

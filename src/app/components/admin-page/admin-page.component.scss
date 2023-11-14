@@ -99,6 +99,7 @@
                     height: 75%;
                     background-color: $background-color;
                     border-radius: 15px;
+                    margin-top: 20px;
                     @include flex_display(flex-start, center, column, 10px);
                     overflow-y: scroll;
 

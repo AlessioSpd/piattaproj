@@ -1,49 +1,68 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { OrderDetailsModalComponent } from '../order-details-modal/order-details-modal.component';
+import { AuthenticationService } from 'src/app/services/auth-service.service';
+import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin-page-service.service';
+import { IUser } from 'src/app/models/IUser';
+import { IProdotto } from 'src/app/models/IProdotto';
+import { IOrdine } from 'src/app/models/IOrdine';
+import { IProdottoCarrello } from 'src/app/models/IProdottoCarrello';
 
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss']
 })
-export class AdminPageComponent {
+export class AdminPageComponent implements OnInit{
 
   @ViewChild(OrderDetailsModalComponent) orderDetailModal!: OrderDetailsModalComponent;
 
+  adminLogged: boolean = false;
   lastActive: string = 'Utenti';
   userDetailsFlag: boolean = false;
-
+  userList: Array<IUser> = []
   tableBackground = ['#F5F5F5', 'white'];
+  selectedUser!: IUser;
+  
+  productListOfOrder: Array<IProdottoCarrello> = [];
+  selectedOrderTotalPrice: number = 0;
   
   tabMenu = [
     { label: "Utenti", active: true },
     { label: "Prodotti", active: false },
   ];
 
-  userTestItem = [
-    "alessiospadafora.main@gmail.com",
-    "alessiospadafora.work@gmail.com",
-    "pamuimc@gmail.com",
-    "alessiospadafora.main@gmail.com",
-    "alessiospadafora.work@gmail.com",
-    "pamuimc@gmail.com",
-  ]
+  userOrderList: Array<IOrdine> = [];
 
-  orderTestItem = [
-    {id: 1, nProd: 123, price: 555},
-    {id: 2, nProd: 30573985, price: 8595},
-    {id: 3, nProd: 30573985, price: 8595},
-    {id: 4, nProd: 30573985, price: 8595},
-    {id: 5, nProd: 30573985, price: 8595},
-    {id: 6, nProd: 30573985, price: 8595},
-  ]
+  productList: Array<IProdotto> = []
 
-  productTestItem = [
-    {marca: 'Apple', nome: 'Iphone', quant: 10, prezzo: 100},
-    {marca: 'Apple', nome: 'Iphone', quant: 0, prezzo: 100},
-    {marca: 'Apple', nome: 'Iphone', quant: 10, prezzo: 100},
-    {marca: 'Apple', nome: 'Iphone', quant: 0, prezzo: 100},
-  ]
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router,
+    private admiServ: AdminService
+  ) {}
+
+  inputValue: string = '';
+  inputChange(newValue: any) {
+    this.admiServ.searchProduct(newValue).subscribe(res => {
+      this.productList = res;
+    })
+  }
+
+  ngOnInit(): void {
+    if(this.auth.isAdminLogged()) {
+      this.router.navigate(['/']);
+    } else {
+      
+      this.admiServ.getAllUser().subscribe(res => {
+        this.userList = res;
+      });
+
+      this.admiServ.getAllProduct().subscribe(res => {
+        this.productList = res;
+      });
+    }
+  }
 
   setActive(index: number) {
     this.tabMenu.map(item => {
@@ -54,16 +73,36 @@ export class AdminPageComponent {
     this.lastActive = this.tabMenu[index].label;
   }
 
-  openUserDetail(index: number) {
+  openUserDetail(selectedUser: IUser) {
     this.userDetailsFlag = !this.userDetailsFlag;
+    this.selectedUser = selectedUser;
+    this.admiServ.getAllOrderOfUser(selectedUser.email).subscribe(res => {
+      
+      let sommaPrezzo = 0;
+      this.userOrderList = res;
+      this.userOrderList.map(ordine => {
+
+        ordine.carrello.map(prodotto => {
+          sommaPrezzo += (prodotto.quantita * prodotto.prezzo)
+        })
+
+        ordine.total_price = sommaPrezzo;
+        sommaPrezzo = 0;
+      })
+    });
   }
 
-  openOrderDetail(index: number) {
-    console.log('cliccato');
+  openOrderDetail(ordine: IOrdine, price: number) {
+    this.productListOfOrder = ordine.carrello;
+    this.selectedOrderTotalPrice = price;
     this.orderDetailModal.closeOpenModal()
   }
 
-  deleteUser(index: number) {
-    this.userTestItem.splice(index, 1);
+  deleteUser(user: IUser) {
+    this.admiServ.removeUser(user.email).subscribe(res => {
+      console.log(res);
+    });
+
+    this.userList.splice(this.userList.indexOf(user), 1);
   }
 }

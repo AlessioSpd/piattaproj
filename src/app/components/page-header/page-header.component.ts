@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/auth-service.service';
+import { CartService } from 'src/app/services/cart-service.service';
 
 @Component({
   selector: 'app-page-header',
@@ -13,14 +14,21 @@ export class PageHeaderComponent implements OnInit {
   currentPath: string = '';
   @Input() mood: string = "user";
   logged: boolean = false;
+  lastWord = '';
 
   @Output() searchInputValueEmitter = new EventEmitter<string>();
 
-  constructor(private router: Router, private auth: AuthenticationService){}
+  constructor(private cartServ: CartService, private router: Router, private auth: AuthenticationService) {}
   
   ngOnInit(): void {
     this.currentPath = this.router.url.replace('/','');
     this.logged = this.auth.isLogged();
+
+    if(this.logged) {
+      this.cartServ.getNProdotti(this.auth.getLoggedEmail()).subscribe(res => {
+        this.cartBadge = res
+      })
+    }
   }
 
   inputValue: string = '';
@@ -42,6 +50,8 @@ export class PageHeaderComponent implements OnInit {
   }
 
   logOut() {
-    console.log('ciao ciao')
+    this.auth.logout()
+    this.logged = false;
+    this.router.navigate(['/']);
   }
 }

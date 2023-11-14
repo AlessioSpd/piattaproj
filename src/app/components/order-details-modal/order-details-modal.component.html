@@ -12,16 +12,16 @@
             <div class="modalContainer__modalPanel__tableHeader__column">Quantità</div> 
         </div>
         <div class="modalContainer__modalPanel__itemListContainer">
-            <div class="modalContainer__modalPanel__itemListContainer__item" [ngStyle]="{'background-color':tableBackground[i%2]}" *ngFor="let item of orderTestItem; index as i;">
-                <div class="modalContainer__modalPanel__tableHeader__column">{{item.id}}</div>
-                <div class="modalContainer__modalPanel__tableHeader__column">{{item.marca}}</div>
-                <div class="modalContainer__modalPanel__tableHeader__column">{{item.nome}}</div>
-                <div class="modalContainer__modalPanel__tableHeader__column">{{item.price}}</div>
-                <div class="modalContainer__modalPanel__tableHeader__column">{{item.quant}}</div>
+            <div class="modalContainer__modalPanel__itemListContainer__item" [ngStyle]="{'background-color':tableBackground[i%2]}" *ngFor="let item of productListOfOrder; index as i;">
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.prodotto.codice}}</div>
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.prodotto.marca}}</div>
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.prodotto.nome}}</div>
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.prezzo}}</div>
+                <div class="modalContainer__modalPanel__tableHeader__column">{{item.quantita}}</div>
             </div>
         </div>
         <div class="modalContainer__modalPanel__tableFooter">
-            <div class="modalContainer__modalPanel__tableFooter__column">Total: ${{tot}}</div>
+            <div class="modalContainer__modalPanel__tableFooter__column">Total: ${{totalPrice}}</div>
         </div>
     </div>
 </div>
