@@ -14,8 +14,13 @@
             <div class="modalContainer__modalPanel__itemDescriptionContainer__brandLabel">Apple</div>
             <div class="modalContainer__modalPanel__itemDescriptionContainer__descriptionArea">{{selectedItem.descrizione}}</div>
             <div class="modalContainer__modalPanel__itemDescriptionContainer__itemPrice">${{selectedItem.prezzo}}</div>
+            <div class="modalContainer__modalPanel__itemDescriptionContainer__itemCounterContainer">
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__itemCounterContainer--minusButton" (click)="changeCounter(-1)"></div>
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__itemCounterContainer--counterLabel">{{countItem}}</div>
+                <div class="modalContainer__modalPanel__itemDescriptionContainer__itemCounterContainer--plusButton" (click)="changeCounter(1)"></div>
+            </div>
             <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer">
-                <div class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer--button" (click)="addItemToCart(selectedItem.codice)">Add to Cart</div>
+                <button class="modalContainer__modalPanel__itemDescriptionContainer__buttonsContainer--button" [disabled]="countItem == 0 || itemDispo == 0" (click)="addItemToCart(selectedItem.codice)">Add to Cart</button>
             </div>
         </div>
     </div>

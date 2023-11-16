@@ -54,4 +54,11 @@ export class PageHeaderComponent implements OnInit {
     this.logged = false;
     this.router.navigate(['/']);
   }
+
+  refresh() {
+    console.log('refresh in header')
+    this.cartServ.getNProdotti(this.auth.getLoggedEmail()).subscribe(res => {
+      this.cartBadge = res;
+    })
+  }
 }

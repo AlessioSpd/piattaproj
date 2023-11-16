@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchPageService } from 'src/app/services/search-page-service.service';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { IProdotto } from 'src/app/models/IProdotto';
+import { PageHeaderComponent } from '../page-header/page-header.component';
 
 @Component({
   selector: 'app-search-page',
@@ -11,6 +12,8 @@ import { IProdotto } from 'src/app/models/IProdotto';
 export class SearchPageComponent implements OnInit{
 
   @ViewChild(ProductModalComponent) childComponent!: ProductModalComponent;
+  @ViewChild(PageHeaderComponent) headerPage!: PageHeaderComponent;
+  lastItemDispo: number = 0;
 
   filterMenu = {
       nome:"Marche",
@@ -99,6 +102,7 @@ export class SearchPageComponent implements OnInit{
   }
 
   openProductModal(selectedItem: IProdotto) {
+    this.lastItemDispo = selectedItem.quantita;
     this.childComponent.openModal(selectedItem)
   }
 
@@ -133,5 +137,10 @@ export class SearchPageComponent implements OnInit{
       let brandQuantityList = this.brandQuantity()
       this.updateFilterMenu(brandQuantityList)
     })
+  }
+
+  reloadBadge(ev: any) {
+    console.log('refresh search')
+    this.headerPage.refresh();
   }
 }

@@ -5,6 +5,7 @@ import { AuthenticationService } from 'src/app/services/auth-service.service';
 import { IProdotto } from 'src/app/models/IProdotto';
 import { IProdottoCarrello } from 'src/app/models/IProdottoCarrello';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-cart-page',
@@ -18,6 +19,7 @@ export class CartPageComponent implements OnInit{
   @ViewChild(OrderConfirmModalComponent) childComponent!: OrderConfirmModalComponent;
   
   cartItemList!: Array<IProdottoCarrello>;
+  validCart: boolean = true;
   
   constructor(private route: Router, private cartServ: CartService, private auth: AuthenticationService) {}
 
@@ -27,7 +29,9 @@ export class CartPageComponent implements OnInit{
       console.log('ciao')
       this.cartServ.getCarelloFromUsermail(email).subscribe(res => {
         this.cartItemList = res;
-        console.log(res);
+        this.cartItemList.map(item => {
+          if(item.quantita > item.prodotto.quantita) this.validCart = false;
+        })
       })
     } else {
       this.route.navigate(['/login']);
@@ -37,7 +41,7 @@ export class CartPageComponent implements OnInit{
   calcTot() {
     let somma: number = 0
     this.cartItemList.map(item => {
-      somma = somma + item.prezzo*item.quantita;
+      somma = somma + item.prodotto.prezzo*item.quantita;
     })
     return somma;
   }
@@ -45,29 +49,40 @@ export class CartPageComponent implements OnInit{
   modifyQuantity(product: IProdottoCarrello, sign: number) {
     console.log(product)
     if(product.quantita + sign == 0) {
-      console.log('entrato1')
       this.cartServ.removeItemFromCart(product.id, this.auth.getLoggedEmail()).subscribe(res => {
-        console.log(res);
+        this.validCart = true;
+        this.cartItemList.map(item => {
+          if(item.quantita > item.prodotto.quantita) this.validCart = false;
+        })
       })
       this.cartItemList.splice(this.cartItemList.indexOf(product), 1);
     } else {
-      console.log('entrato2')
       this.cartServ.addItemToCart(product.prodotto.codice, this.auth.getLoggedEmail(), sign).subscribe(res => {
-        console.log(res);
         product.quantita = product.quantita + sign;
+        this.validCart = true;
+        this.cartItemList.map(item => {
+          if(item.quantita > item.prodotto.quantita) this.validCart = false;
+        })
       })
     }
   }
 
   clearCart() {
-    this.cartServ.clearCart(this.auth.getLoggedEmail()).subscribe(res => {
-      console.log(res);
-    });
+    this.cartItemList=[]
+    this.cartServ.clearCart(this.auth.getLoggedEmail()).subscribe();
+    this.validCart = false;
   }
 
   confirmOrder66() {
-    //chiamata al server con l ordine
-    this.clearCart();
-    this.childComponent.closeOpenModal();
+    this.cartServ.confermaOrdine(this.auth.getLoggedEmail()).subscribe(
+    (data) => { 
+      this.clearCart()
+      this.childComponent.closeOpenModal('Apposto zio')
+      this.validCart = false;
+    },
+    (error) => {
+      this.childComponent.closeOpenModal(error)
+      this.ngOnInit();
+    });
   }
 }

@@ -7,6 +7,7 @@ import { IUser } from 'src/app/models/IUser';
 import { IProdotto } from 'src/app/models/IProdotto';
 import { IOrdine } from 'src/app/models/IOrdine';
 import { IProdottoCarrello } from 'src/app/models/IProdottoCarrello';
+import { EditProdutModalComponent } from '../edit-produt-modal/edit-produt-modal.component';
 
 @Component({
   selector: 'app-admin-page',
@@ -16,6 +17,7 @@ import { IProdottoCarrello } from 'src/app/models/IProdottoCarrello';
 export class AdminPageComponent implements OnInit{
 
   @ViewChild(OrderDetailsModalComponent) orderDetailModal!: OrderDetailsModalComponent;
+  @ViewChild(EditProdutModalComponent) editProductModal!: EditProdutModalComponent;
 
   adminLogged: boolean = false;
   lastActive: string = 'Utenti';
@@ -23,6 +25,8 @@ export class AdminPageComponent implements OnInit{
   userList: Array<IUser> = []
   tableBackground = ['#F5F5F5', 'white'];
   selectedUser!: IUser;
+
+  selectedProduct!: IProdotto;
   
   productListOfOrder: Array<IProdottoCarrello> = [];
   selectedOrderTotalPrice: number = 0;
@@ -33,6 +37,7 @@ export class AdminPageComponent implements OnInit{
   ];
 
   userOrderList: Array<IOrdine> = [];
+  orderNumProduct: number[] = [];
 
   productList: Array<IProdotto> = []
 
@@ -79,15 +84,19 @@ export class AdminPageComponent implements OnInit{
     this.admiServ.getAllOrderOfUser(selectedUser.email).subscribe(res => {
       
       let sommaPrezzo = 0;
+      let sommaQuant = 0;
       this.userOrderList = res;
       this.userOrderList.map(ordine => {
 
         ordine.carrello.map(prodotto => {
+          sommaQuant+=prodotto.quantita;
           sommaPrezzo += (prodotto.quantita * prodotto.prezzo)
         })
 
+        this.orderNumProduct.push(sommaQuant);
         ordine.total_price = sommaPrezzo;
         sommaPrezzo = 0;
+        sommaQuant = 0;
       })
     });
   }
@@ -104,5 +113,31 @@ export class AdminPageComponent implements OnInit{
     });
 
     this.userList.splice(this.userList.indexOf(user), 1);
+  }
+
+  logout() {
+    this.auth.logout()
+    this.adminLogged = false;
+    this.router.navigate(['/']);
+  }
+
+  openProductForEdit(selecteditem: IProdotto) {
+    this.selectedProduct = selecteditem;
+    console.log(this.selectedProduct)
+    this.editProductModal.closeOpenModal(selecteditem, false);
+  }
+
+  addItem(evn: any) {
+    console.log('ho funzionato')
+    setTimeout(() => {
+      this.admiServ.getAllProduct().subscribe(res => {
+        this.productList = res;
+      });
+    }, 2000);
+  }
+
+  createProduct() {
+    let nullP = new IProdotto(0,'','',0,0,'')
+    this.editProductModal.closeOpenModal(nullP, true);
   }
 }

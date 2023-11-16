@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { IUser } from '../models/IUser';
 import { Md5 } from 'ts-md5';
 import { API_PATH } from '../const/const';
+import { catchError, throwError } from 'rxjs';
 
 
 @Injectable({
@@ -20,9 +21,14 @@ export class AuthenticationService {
   }
 
   userRegistration(user: IUser) {
-    console.log("registro dentro")
     user.password = Md5.hashStr(user.password);
-    return this.http.post<IUser>(API_PATH + "/users/registra_user", user);
+    return this.http.post<IUser>(API_PATH + "/users/registra_user", user).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    return throwError('Errore');
   }
 
   login(email: string) {

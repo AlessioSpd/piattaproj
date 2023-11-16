@@ -54,6 +54,41 @@
                 margin-right: 25px;
             }
 
+            &__itemCounterContainer {
+                width: 50% !important;
+                height: 80px !important;
+                // background-color: red;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+
+                &--counterLabel {
+                    user-select: none;
+                }
+
+                &--plusButton {
+                    width: 30px;
+                    height: 30px;
+                    @include image_background('../../../assets/icons/plus.png', 20px 20px);
+                    border-radius: 100%;
+
+                    &:active {
+                        background-color: rgb(206, 206, 206);
+                    }
+                }
+
+                &--minusButton {
+                    width: 30px;
+                    height: 30px;
+                    @include image_background('../../../assets/icons/minus-sign.png', 20px 20px);
+                    border-radius: 100%;
+
+                    &:active {
+                        background-color: rgb(206, 206, 206);
+                    }
+                }
+            }
+
             &__closeButton {
                 width: 30px !important;
                 height: 30px !important;

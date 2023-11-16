@@ -35,4 +35,16 @@ export class AdminService {
   getAllOrderOfUser(email: string) {
     return this.http.get<Array<IOrdine>>(API_PATH + '/ordini/tutti_ordini', {params: {'email': email}});
   }
+
+  deleteProduct(codice: number) {
+    return this.http.delete(API_PATH + '/prodotti/elimina_prodotto', {params: {'codice': codice}});
+  }
+
+  updateProduct(newProduct: IProdotto) {
+    return this.http.put(API_PATH + '/prodotti/update_prodotto', newProduct);
+  }
+
+  createProduct(newProduct: IProdotto) {
+    return this.http.post(API_PATH + '/prodotti/aggiungi_prodotto', newProduct);
+  }
 }

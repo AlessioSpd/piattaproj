@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { IProdotto } from 'src/app/models/IProdotto';
 import { AuthenticationService } from 'src/app/services/auth-service.service';
 import { CartService } from 'src/app/services/cart-service.service';
@@ -11,10 +12,13 @@ import { CartService } from 'src/app/services/cart-service.service';
 export class ProductModalComponent {
   
   openBoolean: Boolean = false;
+  countItem: number = 0;
+  @Input() itemDispo!: number;
+  @Output() addCartEmitter = new EventEmitter<boolean>();
 
   selectedItem: IProdotto = new IProdotto(0, '', '', 0, 0, "");
 
-  constructor(private auth: AuthenticationService, private cartServ: CartService) {}
+  constructor(private auth: AuthenticationService, private cartServ: CartService, private router: Router) {}
 
   closeModal() {
     this.openBoolean = false;
@@ -27,12 +31,22 @@ export class ProductModalComponent {
   }
 
   addItemToCart(codice: number) {
-    let quant = 1;
-    if(this.auth.isLogged())
-      this.cartServ.addItemToCart(codice, this.auth.getLoggedEmail(),quant).subscribe( res => {
+    if(this.auth.isLogged()) {
+      this.cartServ.addItemToCart(codice, this.auth.getLoggedEmail(), this.countItem).subscribe( res => {
         console.log(res)
       });
-    else console.log('no bro devi logga')
+      console.log('refresh emit')
+      this.addCartEmitter.emit(false);
+      this.closeModal();
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  changeCounter(sign: number) {
+    if ( (this.countItem + sign) < 0) return;
+    this.countItem += sign;
   }
 
 }

@@ -1,0 +1,80 @@
+@import "../../../assets/styles/const-style.scss";
+
+.modalContainer {
+    background-color: rgba(0, 0, 0, 0.164);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: $main_font;
+
+    &__modalPanel {
+        background-color: $background-color;
+        width: 700px;
+        height: auto;
+        border-radius: 15px;
+        @include flex_display();
+        box-shadow: 5px 5px grey;
+
+        &__form {
+            width: 100%;
+            height: auto;
+            // background-color: red
+            @include flex_display(none, none, column);
+
+            &__buttonContainer {
+                width: 100%;
+                height: 70px;
+                @include flex_display(space-evenly, center, 20px);
+                
+                &--button {
+                    width: 100px;
+                    height: 40px;
+                    background-color: $background-panel-color;
+                    @include flex_display();
+                    border-radius: 15px;
+                    transition: all .2s;
+
+                    &:nth-child(1):hover {
+                        background-color: rgb(193, 193, 193);
+                    }
+
+                    &:nth-child(2):hover {
+                        background-color: rgb(255, 75, 75);
+                    }
+
+                    &:nth-child(3):hover {
+                        background-color: rgb(54, 255, 88);
+                    }
+                }
+            }
+
+            &__row {
+                width: 100%;
+                height: 70px;
+                @include flex_display(flex-start, center, row, 15px);
+
+                &--label {
+                    flex: 1;
+                    padding-left: 30px;
+                    font-size: 20px;
+                }
+
+                &--input {
+                    flex: 4;
+                    height: 50%;
+                    background-color: $background-panel-color;
+                    border-radius: 15px;
+                    outline: none;
+                    border: none;
+                    margin-right: 15px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
+    }
+}

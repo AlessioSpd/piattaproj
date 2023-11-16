@@ -43,6 +43,7 @@
                 flex: 1;
                 @include flex_display(flex-end);
                 padding-top: 5px;
+                cursor: pointer;
             }
             
             &--icon {
@@ -415,5 +416,19 @@
     &--info {
         margin-top: 10px;
         font-size: 30px;
+    }
+}
+
+.buttonCard {
+    @include image_background('../../../assets/icons/plus.png', 50%);
+    cursor: pointer;
+    transition: all .5s;
+
+    &:hover {
+        background-color: rgb(177, 177, 177);
+    }
+
+    &:active {
+        background-color: $background-color
     }
 }

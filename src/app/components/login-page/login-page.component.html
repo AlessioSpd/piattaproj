@@ -13,7 +13,7 @@
                 <input class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Email..." formControlName="email">
             </div>
             <div class="mainContainer__loginPanel__loginInputContainer__inputContainer">
-                <input class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Password..." formControlName="password">
+                <input type="password" class="mainContainer__loginPanel__loginInputContainer__inputContainer--input" placeholder="Password..." formControlName="password">
             </div>
             <button type="submit"  class="mainContainer__loginPanel__loginInputContainer__submitButton" *ngIf="!loginType" >Access</button>
             <button type="submit"  class="mainContainer__loginPanel__loginInputContainer__submitButton" *ngIf="loginType" >Sign Up</button>
@@ -22,3 +22,5 @@
         </form>
     </div>
 </div>
+
+<app-login-error-modal></app-login-error-modal>

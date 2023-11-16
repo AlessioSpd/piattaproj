@@ -8,11 +8,13 @@ import { Component } from '@angular/core';
 export class OrderConfirmModalComponent {
 
   openBoolean: Boolean = false;
+  message: string = '';
 
-  closeOpenModal() {
+  closeOpenModal(message: string) {
     this.openBoolean = !this.openBoolean;
+    this.message = message;
     setTimeout(() => {
       this.openBoolean = false;
-    }, 1500);
+    }, 2000);
   }
 }

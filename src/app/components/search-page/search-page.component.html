@@ -54,4 +54,4 @@
     </div>
 </div>
 
-<app-product-modal></app-product-modal>
+<app-product-modal [itemDispo]="lastItemDispo" (headerPage)="reloadBadge($event)"></app-product-modal>

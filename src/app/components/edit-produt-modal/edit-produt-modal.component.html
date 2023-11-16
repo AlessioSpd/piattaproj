@@ -1,0 +1,15 @@
+<div class="modalContainer" [ngStyle]="{'display': openBoolean ? 'flex' : 'none'}">
+    <div class="modalContainer__modalPanel">
+        <form class="modalContainer__modalPanel__form" [formGroup]="editForm">
+            <div class="modalContainer__modalPanel__form__row" *ngFor="let item of editMenu; index as i">
+                <div class="modalContainer__modalPanel__form__row--label">{{item.label}}</div>
+                <input class="modalContainer__modalPanel__form__row--input" [type]="item.type" min="0" [formControlName]="item.controlName">
+            </div>
+            <div class="modalContainer__modalPanel__form__buttonContainer">
+                <div class="modalContainer__modalPanel__form__buttonContainer--button" (click)="turnBack()">Turn back</div>
+                <div class="modalContainer__modalPanel__form__buttonContainer--button" (click)="deleteProduct()" *ngIf="!mhamood">Delete</div>
+                <div class="modalContainer__modalPanel__form__buttonContainer--button" (click)="updateProduct()">Apply</div>
+            </div>
+        </form>
+    </div>
+</div>

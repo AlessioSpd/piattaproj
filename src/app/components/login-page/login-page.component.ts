@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/models/IUser';
 import { AuthenticationService } from 'src/app/services/auth-service.service';
+import { LoginErrorModalComponent } from '../login-error-modal/login-error-modal.component';
 
 @Component({
   selector: 'app-login-page',
@@ -15,15 +16,17 @@ export class LoginPageComponent implements OnInit{
 
   registrationForm!: FormGroup;
 
+  @ViewChild(LoginErrorModalComponent) errorModal!: LoginErrorModalComponent;
+
   constructor(private router: Router, private fb: FormBuilder, private authServ: AuthenticationService) {}
   
   
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
-      email: ['admin@admin', [Validators.required, Validators.email]],
+      email: ['luigi@pardo', [Validators.required, Validators.email]],
       nome: ['', []],
       cognome: ['', []],
-      password: ['adminadmin', [Validators.required, Validators.minLength(8)]]
+      password: ['luigiluigi', [Validators.required, Validators.minLength(8)]]
     });
   }
 
@@ -37,12 +40,17 @@ export class LoginPageComponent implements OnInit{
         role: false
       }
       if(this.loginType) {
-        //registro
-        this.authServ.userRegistration(user).subscribe(res => {
-          if(res) this.authServ.login(user.email);
-          this.router.navigate(['/']);
 
-        });
+        this.authServ.userRegistration(user).subscribe(
+          (data) => {
+            this.authServ.login(user.email);
+            this.router.navigate(['/']);
+          },
+          (error) => {
+            this.errorModal.closeOpenModal('Questa mail è già associata ad un utente')
+          }
+        );
+
       } else {
         //loggo
         this.authServ.checkUser(user).subscribe(res => {
@@ -57,15 +65,11 @@ export class LoginPageComponent implements OnInit{
           }
         });
       }
-
       this.registrationForm.reset({nome:'', cognome:'', email: '', password: ''})
     } else {
-      Object.keys(this.registrationForm.controls).forEach(field => {
-        let control = this.registrationForm.get(field);
-        if (control!.invalid) {
-          console.log(`Validation errors for ${field}:`, control!.errors);
-        }
-      });
+      if(this.registrationForm.invalid) {
+        this.errorModal.closeOpenModal('Dati errati. Se non sei registrato, registrati')
+      }
     }
   }
 
@@ -73,9 +77,4 @@ export class LoginPageComponent implements OnInit{
     this.loginType = !this.loginType;
     console.log(this.registrationForm.controls['password'].invalid)
   }
-
-  test() {
-    console.log(this.registrationForm.controls['password'].invalid)
-  }
-
 }
