@@ -16,6 +16,8 @@ import { OrderConfirmModalComponent } from './components/order-confirm-modal/ord
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { OrderDetailsModalComponent } from './components/order-details-modal/order-details-modal.component';
 import { SHA256 } from 'crypto-js';
+import { EditProdutModalComponent } from './components/edit-produt-modal/edit-produt-modal.component';
+import { LoginErrorModalComponent } from './components/login-error-modal/login-error-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { SHA256 } from 'crypto-js';
     OrderConfirmModalComponent,
     AdminPageComponent,
     OrderDetailsModalComponent,
+    EditProdutModalComponent,
+    LoginErrorModalComponent,
   ],
   imports: [
     BrowserModule,
