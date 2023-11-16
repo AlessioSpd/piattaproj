@@ -105,7 +105,7 @@
             }
 
             &__productsContainer {
-                margin-top: 15px;
+                // margin-top: 15px;
                 width: 100%;
                 height: auto;
                 @include flex_display(flex-start, none, row, 20px, wrap);

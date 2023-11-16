@@ -82,7 +82,12 @@ export class CartPageComponent implements OnInit{
     },
     (error) => {
       this.childComponent.closeOpenModal(error)
-      this.ngOnInit();
+      this.cartServ.getCarelloFromUsermail(this.auth.getLoggedEmail()).subscribe(res => {
+        this.cartItemList = res;
+        this.cartItemList.map(item => {
+          if(item.quantita > item.prodotto.quantita) this.validCart = false;
+        })
+      })
     });
   }
 }

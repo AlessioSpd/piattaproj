@@ -27,12 +27,12 @@
         </div>
 
         <div class="mainContainer__searchResultContainer__resultPanel">
-            <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel">
+            <!-- <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel">
                 <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel__row">
                     <app-idrop-menu [dropMenu]="prova"></app-idrop-menu>
                 </div>
                 <div class="mainContainer__searchResultContainer__resultPanel__productsOrderPanel__row"></div>
-            </div>
+            </div> -->
             <div class="mainContainer__searchResultContainer__resultPanel__productsContainer">
                 <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard" *ngFor="let item of prodotti; index as i" (click)="openProductModal(item)">
                     <div class="mainContainer__searchResultContainer__resultPanel__productsContainer__productCard--brandName">{{item.marca}}</div>
